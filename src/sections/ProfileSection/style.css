@@ -1,0 +1,8 @@
+.bg-profile {
+    width: 100%;
+    background-image: url("src/assets/bg-profile.webp");
+    height: auto;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+}

@@ -1,0 +1,57 @@
+
+
+
+.hero {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    color: #fff;
+    height: 645px !important;
+    width: 100%;
+    left: 0;
+    border-radius: 0;
+    background-image: url("../../assets/hero-banner.webp") !important;
+    background-size: cover;
+}
+.hero .content {
+    display: flex;
+    justify-content: space-between;
+}
+.hero .content .text-box {
+    width: 50%;
+    height: 140px;
+    width: 570px;
+    left: 150px;
+    margin-top: 78px;
+    border-radius: nullpx;
+    z-index: 100;
+}
+.hero .content .text-box p {
+    font-family: Rubik;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 30px;
+    letter-spacing: 0;
+    text-align: left;
+
+}
+.hero .content .text-box button {
+    width: 250px;
+    height: 60px;
+    top: 489px;
+    border: none;
+    background: #FFBA33;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 18px;
+}
+.hero .content .search input {
+    width: 314px;
+    height: 54px;
+    border: none;
+    background: #EFEEEE;
+    border-radius: 30px;
+    right: 0;
+    margin-top: 18px;
+    padding: 0 20px;
+}

@@ -1,0 +1,29 @@
+.auth-bg {
+    background: url(src/assets/background.webp) no-repeat;
+    background-size: cover;
+    display: flex;
+    flex: 0.5;
+
+}
+
+.auth-form {
+    height: 100%;
+    flex-direction: column;
+    flex: 0.5
+}
+
+.navbar-login {
+    display: flex;
+    flex: 0.2;
+    height: 40px;
+    justify-content: space-between;
+    padding: 1rem;
+}
+
+.text-account {
+    position: relative;
+    text-align: center;
+    background: white;
+    width: 40%;
+    margin: 0 auto;
+}

@@ -1,0 +1,15 @@
+.map-below {
+    display: flex;
+    justify-content: center;
+    margin-top: 150px;
+}
+.map-below .text-head {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+.map-below img {
+    width: 100%;
+    margin-top: 155px;
+}

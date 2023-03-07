@@ -1,0 +1,21 @@
+.partner {
+    display: flex;
+    justify-content: center;
+}
+.partner .inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+.partner .list-partner {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 74px 0;
+}
+.partner .list-partner img {
+    max-width: 190px;
+    filter: opacity(50%) grayscale(100%);
+}

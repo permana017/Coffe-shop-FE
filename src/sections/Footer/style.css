@@ -1,0 +1,28 @@
+.footer {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background: #F8F8F8;
+}
+.footer .inner {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin: 180px 0 100px;
+
+}
+.footer .side-left {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+.footer .side-right {
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+}
+.footer .side-left img {
+    max-width: 33px;
+    max-height: 33px;
+}

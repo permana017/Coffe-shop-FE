@@ -2,23 +2,22 @@ import React from "react";
 import "../Banner/style.css"
 import "../../style/Global.css"   
 import imgUser from "../../assets/user.webp"
+import imgLocation from "src/assets/location.png"
+
 
 
 
 function Banner() {
     return(
         <section className="hero">
-            <div className="container">
+            <div className="container mt-10 md:mt-0">
                 <div className="content">
-                    <div className="text-box">
-                        <h1 className="text-label my-10">Start Your Day with Coffee and Good Meals</h1>
-                        <p className="desc tw-550 text-white my-5" >We provide high quality beans,
+                    <div className="text-box w-full">
+                        <h1 className="my-10 md:text-5xl text-3xl font-bold md:font-black">Start Your Day with Coffee and Good Meals</h1>
+                        <p className="mb-10 md:text-xl font-semibold md:font-bold" >We provide high quality beans,
                             good taste, and healthy meals made by love just for you. Start your day with us
                             for a bigger smile!</p>
                         <button>Get Started</button>
-                    </div>
-                    <div className="search">
-                        <input type="text" placeholder="Search"/>
                     </div>
                 </div>
                 <div className="box-info-wreapper">
@@ -26,26 +25,26 @@ function Banner() {
                         <div className="inner">
                             <div className="box-content">
                                 <div className="content-inner">
-                                    <div className="info">
-                                        <section className="part-info flex">
-                                            <img src={imgUser} alt="user" height="55px" width="55px" className="mr-10"/>
+                                    <div className="info p-4 md:p-12">
+                                        <section className="md:flex md:flex-row flex flex-col justify-center">
+                                            <img src={imgUser} alt="user" height="55px" width="55px" className="md:mr-10 mb-5 md:mb-0"/>
                                             <div className="flex flex-col ">
-                                                <h2 className="tittle m-0">90+</h2>
-                                                <p className="m-0">Staff</p>
+                                                <h2 className="w-full text-center">90+</h2>
+                                                <p className="w-full text-center">Staff</p>
                                             </div>
                                         </section>
-                                        <section className="part-info flex">
-                                            <img src={imgUser} alt="user" height="55px" width="55px" className="mr-10"/>
+                                        <section className="md:flex md:flex-row flex flex-col justify-center">
+                                            <img src={imgLocation} alt="user" height="55px" width="55px" className="md:mr-10 mb-5 md:mb-0"/>
                                             <div className="flex flex-col ">
-                                                <h2 className="tittle m-0">90+</h2>
-                                                <p className="m-0">Staff</p>
+                                                <h2 className="w-full text-center">30+</h2>
+                                                <p className="w-full text-center">Stores</p>
                                             </div>
                                         </section>
-                                        <section className="part-info flex">
-                                            <img src={imgUser} alt="user" height="55px" width="55px" className="mr-10"/>
+                                        <section className="md:flex md:flex-row flex flex-col justify-center">
+                                            <img src={imgUser} alt="user" height="55px" width="55px" className="md:mr-10 mb-5 md:mb-0"/>
                                             <div className="flex flex-col ">
-                                                <h2 className="tittle m-0">90+</h2>
-                                                <p className="m-0">Staff</p>
+                                                <h2 className="w-full text-center">800+</h2>
+                                                <p className="w-full text-center">Costumer</p>
                                             </div>
                                         </section>
                                     </div>

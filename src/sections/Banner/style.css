@@ -6,11 +6,11 @@
     justify-content: center;
     position: relative;
     color: #fff;
-    height: 645px !important;
+    height: 645px;
     width: 100%;
     left: 0;
     border-radius: 0;
-    background-image: url("../../assets/hero-banner.webp") !important;
+    background-image: url("../../assets/hero-banner.webp");
     background-size: cover;
 }
 .hero .content {
@@ -24,16 +24,6 @@
     left: 150px;
     margin-top: 78px;
     border-radius: nullpx;
-    z-index: 100;
-}
-.hero .content .text-box p {
-    font-family: Rubik;
-    font-size: 20px;
-    font-weight: 700;
-    line-height: 30px;
-    letter-spacing: 0;
-    text-align: left;
-
 }
 .hero .content .text-box button {
     width: 250px;
@@ -55,3 +45,8 @@
     margin-top: 18px;
     padding: 0 20px;
 }
+
+@media only screen and (max-width: 750px) {
+
+}
+

@@ -8,7 +8,12 @@ function SignUpPage() {
         <div>
             <SignupSection/>
             <Footer >
-                <CardPromo/>
+                <CardPromo
+                btn="Create Now"
+                title="Get your member card now!"
+                desc="Let's join with our member and enjoy the deals."
+                bottom='bottom-[51px]'
+                />
             </Footer>
         </div>
     )

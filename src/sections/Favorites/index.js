@@ -41,7 +41,7 @@ function Favorites() {
                         <h3 className="price">IDR 25.000</h3>
                         <button data-card="1">Order Now</button>
                     </div>
-                    <div className="card" data-card="2">
+                    <div className="card2" data-card="2">
                         <img src={imgPinky} alt="image22"/>
                         <h4>Pinky Promise</h4>
                         <div className="description">
@@ -69,7 +69,7 @@ function Favorites() {
                         <h3 className="price">IDR 30.000</h3>
                         <button>Order Now</button>
                     </div>
-                    <div className="card" data-card="3">
+                    <div className="card2" data-card="3">
                         <img src={imgChiken} alt="image22"/>
                         <h4>Chicken Wings</h4>
                         <div className="description">

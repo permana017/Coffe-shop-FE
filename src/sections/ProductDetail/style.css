@@ -2,24 +2,26 @@
 .detail-product {
     width: 100%;
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
+    padding-top: 170px;
     background: #BCBABA;
+    flex-direction: column;
+    align-items: center;
 }
 .detail-product .image {
-    width: 40%;
+    width: 38%;
     flex-direction: column;
     align-items: center;
 }
 .detail-product .description {
     display: flex;
-    width: 60%;
-    padding: 71px 0 225px 94px;
+    width: 62%;
+    padding: 71px 0 250px 94px;
     flex-direction: column;
     align-items: center;
 }
 .detail-product .description .desc-product {
     padding: 80px;
-    height: 60vh;
     background-color: #FFFFFF;
     display: flex;
     flex-direction: column;
@@ -39,8 +41,20 @@
     font-family: Rubik;
     font-size: 30px;
     font-weight: 700;
-    line-height: 45px;
-    letter-spacing: 0;
+    text-align: center;
+
+}
+.detail-product .description .box-btn .btn-size-active {
+    width: 70px;
+    height: 70px;
+    border: none;
+    background: #6A4029;
+    color: #FFFFFF;
+    border-radius: 200px;
+    margin: 0 20px;
+    font-family: Rubik;
+    font-size: 30px;
+    font-weight: 700;
     text-align: center;
 
 }

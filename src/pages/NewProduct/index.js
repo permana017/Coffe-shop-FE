@@ -9,18 +9,18 @@ import { useNavigate } from "react-router-dom";
 
 function NewProduct() {
     let dataUser = localStorage.getItem('@userLogin')
-        dataUser = JSON.parse(dataUser)
-        console.log("token",dataUser);
+    if (dataUser !== "undefined") {
+        dataUser = JSON.parse(dataUser)   
+    }
     let token = dataUser?.data?.token
     const [data, setData] = useState({tittle:"", description:"",category:"", price:"", image:"" })
 
     const [img,setImg] = useState('')
+    // console.log("data img", img);
+
     const navigate = useNavigate()
 
 
-    useEffect(() => {
-            console.log('image',data);
-      },[data]);
 
 
 
@@ -42,8 +42,9 @@ function NewProduct() {
 
     
 
-    const onSubmit= ()=>{
-        axios.post('http://localhost:5000/api/v1/products', {
+    const onSubmit= (e)=>{
+        e.preventDefault()
+        axios.post('https://permana-coffee.cyclic.app/api/v1/products', {
            ...data
           }, {
             headers: {
@@ -54,25 +55,18 @@ function NewProduct() {
         })
             .then(function (response) {
             console.log(response);
-            navigate("productAdmin")
+            alert("add Product Success")
                 
             })
             .catch(function (error) {
                 console.log(error);
             })
-    //     axios.get('http://localhost:5000/api/v1/users/2eef7039-32c9-445c-81fc-eedbd220a476')
-    //     .then(function (response) {
-    //    console.log((response.data.data.statusLogin))
-    //     })
-    //     .catch(function (error) {
-    //         console.log(error);
-    //     })
     
     }
     return (
         <div>
             <Navbar/>
-            <div className="flex justify-center">
+            <div className="flex justify-center mt-40">
                 <form className="container flex w-full">
                     <section className="flex flex-col w-3/6 pr-40">
                         <div className="flex flex-col items-center">
@@ -94,7 +88,7 @@ function NewProduct() {
                             Take a Picture
                         </button> */}
                         <button
-                            className="btn3 btn-input py-5 my-8">
+                            className="btn3 btn-input py-5 my-8" type="button">
                             Take a picture
                         </button>
                         <div>
@@ -142,29 +136,30 @@ function NewProduct() {
                             <input  placeholder="Click size you want to use for this product" className=" py-1 px-3 mt-3"></input>
                         </div>
                         <div className="mt-3 flex">
-                            <button className="bg-amber-400 hover:bg-amber-500 mr-3 hover:shadow-lg shadow-black-500/50 text-white font-bold py-5 px-7 rounded-full text-xl">R</button>
-                            <button className="bg-amber-400 hover:bg-amber-500 mr-3 hover:shadow-lg shadow-black-500/50 text-white font-bold py-5 px-7 rounded-full text-xl">L</button>
-                            <button className="bg-amber-400 hover:bg-amber-500 mr-3 hover:shadow-lg shadow-black-500/50 text-white font-bold py-5 px-5 rounded-full text-xl">XL</button>
+                            <button type="button" className="bg-amber-400 hover:bg-amber-500 mr-3 hover:shadow-lg shadow-black-500/50 text-white font-bold py-5 px-7 rounded-full text-xl">R</button>
+                            <button type="button" className="bg-amber-400 hover:bg-amber-500 mr-3 hover:shadow-lg shadow-black-500/50 text-white font-bold py-5 px-7 rounded-full text-xl">L</button>
+                            <button type="button" className="bg-amber-400 hover:bg-amber-500 mr-3 hover:shadow-lg shadow-black-500/50 text-white font-bold py-5 px-5 rounded-full text-xl">XL</button>
                         </div>
                         <div className="flex flex-col mt-8 ">
                             <label for="delivery-hour" className="text-xl font-bold">Input delivery methods:</label>
                             <input placeholder="Click size you want to use for this product" className="py-1 px-3 mt-3"></input>
                         </div>
                         <div className="mt-3 flex">
-                            <button className="bg-amber-400 hover:bg-amber-500 mr-3 hover:shadow-lg shadow-black-500/50 text-white font-bold py-4 px-7 rounded-xl text-xl">Home Delivery</button>
-                            <button className="bg-amber-400 hover:bg-amber-500 mr-3 hover:shadow-lg shadow-black-500/50 text-white font-bold py-4 px-7 rounded-xl text-xl">Home Delivery</button>
-                            <button className="bg-amber-400 hover:bg-amber-500 mr-3 hover:shadow-lg shadow-black-500/50 text-white font-bold py-4 px-5 rounded-xl text-xl">Take away</button>
+                            <button type="button" className="bg-amber-400 hover:bg-amber-500 mr-3 hover:shadow-lg shadow-black-500/50 text-white font-bold py-4 px-7 rounded-xl text-xl">Home Delivery</button>
+                            <button type="button" className="bg-amber-400 hover:bg-amber-500 mr-3 hover:shadow-lg shadow-black-500/50 text-white font-bold py-4 px-7 rounded-xl text-xl">Home Delivery</button>
+                            <button type="button" className="bg-amber-400 hover:bg-amber-500 mr-3 hover:shadow-lg shadow-black-500/50 text-white font-bold py-4 px-5 rounded-xl text-xl">Take away</button>
                         </div>
                         <div>
                         <button
-                            onClick={()=> onSubmit()}
-                            type="submit"
+                            onClick={(e)=> onSubmit(e)}
+                            type="button"
                             className="btn3 btn-secondary btn-block py-6 rounded-xl mt-20">
-                            Submit
+                            Save Product
                         </button>
                         <button
+                            type="button"
                             className="btn3 btn-light btn-block py-6 rounded-xl mt-5 mb-12">
-                            Save Product
+                            Cancle
                         </button>  
                         </div>
                     </section>

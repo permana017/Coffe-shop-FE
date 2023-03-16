@@ -1,14 +1,39 @@
 import imgSearch from "src/assets/search.svg"
 import imgChat from "src/assets/chat.svg"
-import imgProfile from "src/assets/profile.svg"
-import { useState } from "react"
+import profileDefault from "src/assets/PngItem_786293.png"
+import { useState, useEffect} from "react"
 import { useNavigate } from "react-router-dom"
+import axios from "axios"
 
 
 
 const AfterLogin = ({setLogin}) =>{
     const navigate = useNavigate()
     const[show,setShow]=useState(false)
+    const [dataId, setDataId] = useState("")
+    const [data, setData] = useState([])
+    // console.log("data image", data.img);
+    useEffect(() => {
+        let dataUser = localStorage.getItem('@userLogin')
+        if (dataUser !== "undefined") {
+            dataUser = JSON.parse(dataUser)   
+        }
+        setDataId(dataUser?.data?.user?.id)
+    }, [])
+    const getData = () => {
+        axios
+            .get(`https://permana-coffee.cyclic.app/api/v1/users/${dataId}`)
+            .then(res => {
+                // console.log("data dari be");
+                setData(res.data.data)
+            })
+            .catch(err => console.log(err))
+        }
+
+    useEffect(() => {
+        getData()
+    }, [dataId]);
+
 
 
     const onLogout  = () =>{
@@ -33,7 +58,7 @@ const AfterLogin = ({setLogin}) =>{
     <div className="nav-profile relative">
         <img src={imgSearch} alt="search"/>
         <img src={imgChat} alt="chat"/>
-        <img src={imgProfile} onClick={()=>setShow(!show)} alt="profile" className="rounded-full" width="33px" height="33px" />
+        <img src={data.img ? (`https://permana-coffee.cyclic.app/upload/images/${data.img}`) : profileDefault} onClick={()=>setShow(!show)} alt="profile" className="rounded-full" width="33px" height="33px" />
         {show ? (<ShowLogout/>):null}
     </div>   
     )

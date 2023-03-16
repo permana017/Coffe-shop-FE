@@ -9,7 +9,9 @@ import Footer from "src/sections/Footer"
 function ProductPage() {
     return(
         <div>
-            <Navbar/>
+            <div className="md:mt-[129px]">
+                <Navbar/>
+            </div>
             <Product/>
             <Footer/>
         </div>

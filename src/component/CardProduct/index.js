@@ -4,14 +4,26 @@ import "src/component/CardProduct/style.css"
 import axios from "axios";
 
 
-function CardProduct() {
-    
+
+function CardProduct(props) {
+    const {isFilter, isSearch} = props
     const [data, setData] = useState([])
     const [filter, setFilter]= useState("")
 
+
+    const url = ()=>{
+        if (isFilter !== "") {
+             return (`https://permana-coffee.cyclic.app/api/v1/products?cat=${isFilter}`)
+        } else if (isSearch !== "") {
+            return (`https://permana-coffee.cyclic.app/api/v1/products?search=${isSearch}`)
+        }else{
+            return (`https://permana-coffee.cyclic.app/api/v1/products`)
+        }
+    }
+
     const getData = () => {
         axios
-            .get(`http://localhost:5000/api/v1/products?cat=${filter}`)
+            .get(url())
             .then(res => {
                 setData(res?.data?.data)
             })
@@ -20,9 +32,8 @@ function CardProduct() {
 
     useEffect(() => {
         getData()
-    }, []);
+    }, [isFilter, isSearch]);
 
-    // console.log('cee', data)
 
     return (
         <div>
@@ -30,15 +41,15 @@ function CardProduct() {
                 {
                     data
                         ?.map((item, i) => (
-                            <Link className="card-list-product"  to="/detailproduct" state={{ data: item }} >
+                            <Link  key={i} className="card-list-product"  to="/detailproduct" state={{ data: item }} >
                                 <img
                                     src={
-                                        `http://localhost:5000/upload/images/${item.images[0].filename}`
+                                        `https://permana-coffee.cyclic.app/upload/images/${item.images[0].filename}`
                                       }
                                     alt="Veggie-tomato"
                                     className="avatar rounded-full"/>
                                 <h2 className="mt-20 text-center text-2xl font-bold w-[70%]">{item.tittle}</h2>
-                                <h3 className="text  text-secondary text-base font-semibold absolute bottom-6">{item.price}</h3>
+                                <h3 className="text  text-secondary text-base font-semibold absolute bottom-6">IDR {item.price}</h3>
                             </Link>
                         ))
                 }
@@ -62,13 +73,13 @@ function CardProductAdmin(props) {
     const {isFilter} = props
     const navigate = useNavigate();
     const [data, setData] = useState([])
-    // const [isDeleteId, SetDeletId] = useState([])
+    const [isDeleteId, SetDeletId] = useState([])
 
     const getData = () => {
         axios
-            .get(`http://localhost:5000/api/v1/products?cat=${isFilter}`)
+            .get(`https://permana-coffee.cyclic.app/api/v1/products?cat=${isFilter}`)
             .then(res => {
-                console.log("data dari be");
+                // console.log("data dari be");
                 setData(res.data.data)
             })
             .catch(err => console.log(err))
@@ -80,11 +91,15 @@ function CardProductAdmin(props) {
     }, [isFilter]);
 
     const deleteCard = (id)=>{
+        console.log("id",id);
         let dataUser = localStorage.getItem('@userLogin')
-        dataUser = JSON.parse(dataUser)
+        if (dataUser !== "undefined") { 
+            dataUser = JSON.parse(dataUser)
+        }
         let token = dataUser?.data.token
+        console.log("token",token);
         axios
-        .delete(`http://localhost:5000/api/v1/products/${id}`,{
+        .delete(`https://permana-coffee.cyclic.app/api/v1/products/${id}`,{
             headers: {
                 'Access-Control-Allow-Headers':'*',
                 'content-type': 'multipart/form-data',
@@ -93,23 +108,24 @@ function CardProductAdmin(props) {
         })
             
         .then(res => {
-            console.log("success delete", res);
+            alert("Succes Deleted")
+            // console.log("success delete", res);
             getData()
         })
-        .catch(err => console.log(err))
+        .catch(err => console.log(err.response.data.message))
     }
     return (
         <section className="list-product">
             {data?.map((item,i)=>(
-                <div className="card-list-product flex justify-between">
+                <div key={i} className="card-list-product flex justify-between">
                     <img
                         src={
-                            `http://localhost:5000/upload/images/${item.images[0].filename}`
+                            `https://permana-coffee.cyclic.app/upload/images/${item.images[0].filename}`
                           }
                         alt="Veggie-tomato"
                         className="avatar rounded-full"/>
                     <h2 className="mt-20 text-center text-2xl font-bold w-[70%]">{item.tittle}</h2>
-                    <h3 className="text  text-secondary text-base font-semibold absolute bottom-6">{item.price}</h3>
+                    <h3 className="text  text-secondary text-base font-semibold absolute bottom-6">IDR {item.price}</h3>
                     <Link to="/editproduct" state={{ data: item }}>
                         <img 
                         className="absolute icon-edit "

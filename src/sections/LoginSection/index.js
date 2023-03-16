@@ -5,17 +5,22 @@ import {signIn} from "src/redux/Auth/authAction";
 import {useDispatch, useSelector} from "react-redux";
 import {redirect, useNavigate} from "react-router-dom";
 
+
+
 function Login() {
     const navigate = useNavigate()
     const {auth} = useSelector((state) => state)
     const dispatch = useDispatch();
     const [loginForm, setLoginForm] = useState(
-        {username: "", password: ""}
+        {email: "", password: ""}
     )
+    const [error, setError] = useState(false)
 
     useEffect(() => {
         let dataUser = localStorage.getItem('@userLogin')
-        dataUser = JSON.parse(dataUser)
+        if (dataUser !== "undefined") {
+            dataUser = JSON.parse(dataUser)   
+        }
         let token = dataUser?.data?.token
         if (token) {
             navigate('/products')
@@ -33,7 +38,7 @@ function Login() {
             <main className="container2">
                 <section className="auth-bg"></section>
                 <section className="auth-form">
-                    <nav className="container2 navbar-login flex items-center my-5 px-14">
+                    <nav className="flex w-full justify-between p-[55px]">
                         <div className="brand">
                             <img
                                 src={require("src/assets/coffee 1.png")}
@@ -42,24 +47,25 @@ function Login() {
                             <h3 className="text-xl font-bold " onClick={() => navigate('/newproduct')}>Permana Coffe</h3>
                         </div>
                         <button
+                            onClick={()=>navigate("/register")}
                             className="btn-primary rounded-full flex items-center py-2 px-7 font-semibold">
                             Sign Up
                         </button>
                     </nav>
                     <div className="flex flex-col items-center">
-                        <h3 className="text-center text-secondary font-bold mb-12">Login</h3>
+                        <h3 className="text-center text-secondary font-bold mb-12 text-3xl">Login</h3>
                         <form onSubmit={handleLogin} className="pb-[200px] z-40 mt-0 w-[75%]">
                             <div className="mb-5">
-                                <label className="form-label" for="email-input">username :</label>
+                                <label className="form-label" for="email-input">email :</label>
                                 <input
                                     onChange={(e) => setLoginForm({
                                         ...loginForm,
-                                        username: e.target.value
+                                        email: e.target.value
 
                                     }, )}
                                     className="form-input rounded-xl"
                                     id="email-input"
-                                    type="text"
+                                    type="email"
                                     placeholder="Example: johndoe@gmail.com"/>
                             </div>
                             <div className="mb-5">
@@ -75,6 +81,7 @@ function Login() {
                                     type="password"
                                     placeholder="Example: ****"/>
                             </div>
+                            <div></div>
                             <button type="submit" className="btn btn-primary rounded-xl btn-block mb-5 ">
                                 Login
                             </button>

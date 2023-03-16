@@ -11,16 +11,19 @@ function EditProduct() {
     
 
     let dataUser = localStorage.getItem('@userLogin')
-    dataUser = JSON.parse(dataUser)
-    console.log(dataUser?.data?.token);
+    if (dataUser !== "undefined") {  
+        dataUser = JSON.parse(dataUser)   
+    }
+    
     let token = dataUser?.data?.token
 
     // const [img,setImg] = useState('')
     const [isData, setIsData] = useState({tittle:"", description:"",category:"", price:"", image:"" })
-    // console.log("data", isData)
+    console.log(isData);
+
 
     const handleUpdateData=(e,params)=>{
-        console.log(params)
+        // console.log(params)
         // if([params] == 'image'){
         //     let file = e.target.files[0];
         //     let fileReader = new FileReader();
@@ -36,7 +39,7 @@ function EditProduct() {
     }
     const onSubmit= ()=>{
 
-        axios.put(`http://localhost:5000/api/v1/products/${data?.id}`,
+        axios.put(`https://permana-coffee.cyclic.app/api/v1/products/${data?.id}`,
          {
            ...isData
           }, {
@@ -57,7 +60,7 @@ function EditProduct() {
     return (
         <div>
             <Navbar/>
-            <div className="flex justify-center">
+            <div className="flex justify-center mt-[200px]">
                 <main className="container flex w-full">
                     <section className="flex flex-col w-3/6 pr-20 justify-between">
                         {/* {img ? (
@@ -85,6 +88,11 @@ function EditProduct() {
                                 type="text"
                                 defaultValue={data?.price}
                                 className="border-b-2 px-3 mt-5 text-4xl"></input>
+                            <input
+                                onChange={(e)=> handleUpdateData(e,"category")}
+                                type="text"
+                                defaultValue={data?.category}
+                                className="border-b-2 px-3 mt-5 text-4xl"></input>
                             <textarea 
                             onChange={(e)=> handleUpdateData(e,"description")}
                             defaultValue={data?.description} className="border-b-2  px-3 mt-3 h-36 "/>
@@ -103,7 +111,7 @@ function EditProduct() {
                         </div>
                         <button
                             onClick={()=> onSubmit()}
-                            className="bg-yellow-800 hover:bg-yellow-900 mr-3 hover:shadow-lg shadow-black-500/50 text-white font-bold py-5 px-7 rounded-xl text-xl w-full my-9">Add to Cart</button>
+                            className="bg-yellow-800 hover:bg-yellow-900 mr-3 hover:shadow-lg shadow-black-500/50 text-white font-bold py-5 px-7 rounded-xl text-xl w-full my-9">Save Change</button>
                     </section>
                 </main>
             </div>

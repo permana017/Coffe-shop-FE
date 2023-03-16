@@ -9,7 +9,9 @@ function Home() {
     return (
         <div >
             <Navbar/>
-            <Banner/>
+            <div className='md:mt-[129px]'>
+                <Banner/>
+            </div>
             <TeamWork/>
             <Favorites/>
             <Store/>

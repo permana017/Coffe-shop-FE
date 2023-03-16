@@ -13,7 +13,7 @@ function Partner() {
             <section className="partner">
                 <div className="container">
                     <div className="inner">
-                        <h2 className="title tw-500 text-center">Our Partner</h2>
+                        <h2 className="font-bold md:text-5xl text-3xl mt-10 text-center">Our Partner</h2>
                         <div className="list-partner">
                             <img src={logoNetflix} alt="Neflix"/>
                             <img src={logoReddit} alt="Reddit-Logo"/>

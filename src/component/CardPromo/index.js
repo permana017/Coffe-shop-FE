@@ -1,21 +1,21 @@
 import React from "react";
 import "src/style/Global.css"
 
-function CardPromo() {
+function CardPromo({title, desc, btn, bottom}) {
     return(
         <div>
             <div className="box-info-wreapper">
-                <div className="info-wrapper bottom-[-200px]">
+                <div className={`info-wrapper ${bottom}`}>
                     <div className="inner">
                         <div className="box-content">
                             <div className="text-box-promo">
                                 <div className="text-promo">
-                                    <h2 className="tittle tw-250 m-0 text-2xl font-semibold">Check our promo today!</h2>
-                                    <p className="desc text-left mb-0 text-base mt-5">Let's see the deals and pick yours!</p>
+                                    <h2 className="w-2/3 text-2xl font-semibold">{title}</h2>
+                                    <p className="desc text-left mb-0 text-base mt-5">{desc}</p>
                                 </div>
                                 <div className="button-promo">
                                     <button className="btn btn-primary rounded">
-                                        See Promo
+                                        {btn}
                                     </button>
                                 </div>
                             </div>

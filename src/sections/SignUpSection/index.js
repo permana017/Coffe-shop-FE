@@ -10,7 +10,7 @@ function SignupSection() {
 
     const navigate = useNavigate()
     const [data, setData] = useState({
-        username : "",
+        email : "",
         password : ""
     })
 
@@ -20,7 +20,7 @@ function SignupSection() {
     }
 
     const postDataUser = () =>{
-        axios.post('http://localhost:5000/api/v1/auth/register',{
+        axios.post('https://permana-coffee.cyclic.app/api/v1/auth/register',{
             ...data
         },{
             headers: {
@@ -41,25 +41,27 @@ function SignupSection() {
         <main className="container2">
             <section className="auth-bg"></section>
             <section className="auth-form">
-                <nav className="container2 navbar-login flex items-center my-5 px-14">
+                <nav className="flex  w-full justify-between p-[55px]">
                     <div className="brand">
                         <img src={require("src/assets/coffee 1.png")} alt="" width="20" height="20"/>
                         <h3 className="font-bold text-xl">Permana Coffe</h3>
                     </div>
-                    <button className="btn-primary rounded-full flex items-center py-2 px-7 font-semibold">
+                    <button 
+                    onClick={()=> navigate("/loginpage")}
+                    className="btn-primary rounded-full flex items-center py-2 px-7 font-semibold">
                         Login
                     </button>
                 </nav>
-                <div>
-                    <h3 className="text-center text-secondary font-bold mb-12">signup</h3>
+                <div className="flex flex-col items-center">
+                    <h3 className="text-center text-secondary text-3xl font-bold">signup</h3>
                     <div 
-                    className="p-50 pb-[120px] mb-20">
+                    className="w-[75%] py-[50px] mb-28">
                         <div className="mb-5">
-                            <label className="form-label" for="email-input">Username :</label>
+                            <label className="form-label" for="email-input">email :</label>
                             <input 
-                            onChange={(e)=>handleSignup(e ,"username")}
-                            className="form-input rounded-xl" id="email-input" type="usenrname"
-                                placeholder="Enter your Username" />
+                            onChange={(e)=>handleSignup(e ,"email")}
+                            className="form-input rounded-xl" id="email-input" type="email"
+                                placeholder="Enter your email" />
                         </div>
                         <div className="mb-5">
                             <label className="form-label" for="password">Password :</label>
@@ -69,9 +71,9 @@ function SignupSection() {
                                 placeholder="Enter your password" />
                         </div>
                         <div className="mb-5">
-                            <label className="form-label" for="phone-number-input">Phone Number :</label>
-                            <input className="form-input rounded-xl" id="password-input" type="password"
-                                placeholder="Enter Phone Number :" />
+                            <label className="form-label" for="phone-number-input">username :</label>
+                            <input className="form-input rounded-xl" id="password-input" type="text"
+                                placeholder="Enter username :" />
                         </div>
                         <button
                         onClick={()=> postDataUser()}

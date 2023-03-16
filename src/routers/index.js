@@ -17,33 +17,32 @@ import { useSelector } from "react-redux";
 
 
 const App = () => {
-    const [isAdmin,setAdmin] = useState(false)
+    const [isAdmin,setAdmin] = useState(true)
+    
     const {auth} = useSelector((state) => state)
 
 
     useEffect(() => {
         let dataUser = localStorage.getItem('@userLogin')
-        dataUser = JSON.parse(dataUser)
-        console.log("data user", dataUser?.data?.user?.role);
+        if (dataUser !== "undefined" ) {
+            dataUser = JSON.parse(dataUser) 
+        }
         let role = dataUser?.data?.user?.role
         if (role === "admin") {
             setAdmin(true)
 
         } else {
-            setAdmin(false)
+            // setAdmin(false)
 
-        }        
-        
-        console.log("ieu data di routers",dataUser );
-        console.log("auth",auth);
+        }
     }, [auth])
 
     useEffect(() => {
-        console.log("cheking");
+        console.log("admin", isAdmin);
         if (isAdmin) {
     
             // navigate("/ProductAdmin")
-            redirect("/ProductAdmin")
+            redirect("/Products")
             // goToProduct()
         } else {
 
@@ -52,10 +51,6 @@ const App = () => {
         }        
         
     }, [isAdmin])
-
-    // const goToProduct = () =>{
-    //    return redirect("/ProductAdmin")
-    // }
 
 
     let userAdmin = [
@@ -77,10 +72,6 @@ const App = () => {
         {
             path: "/editProduct",
             element: <EditProduct/>
-        },
-        {
-            path: "/ProductAdmin",
-            element: <ProductAdmin/>
         },
         {
             path: "/loginpage",
@@ -148,15 +139,17 @@ const App = () => {
         }
     ]
 
+    // console.log("data route admin", userAdmin);
+
 
 
     return (
         <Router>
             <Routes>
                 {isAdmin?userAdmin.map((item,i)=>(
-                     <Route  path={item.path} element={item.element} />
+                     <Route key={i} path={item.path} element={item.element} />
                 )):userPublic.map((item,i)=>(
-                     <Route  path={item.path} element={item.element} />
+                     <Route key={i} path={item.path} element={item.element} />
                 ))}
                 <Route path="/404" element={(<div className="m-5">404 : PAGE NOT FOUND</div>) } />
                 <Route path="*" element={ <Navigate to="/404" replace />} />

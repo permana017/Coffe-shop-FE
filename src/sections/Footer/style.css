@@ -9,7 +9,6 @@
     display: flex;
     justify-content: space-between;
     width: 100%;
-    margin: 180px 0 100px;
 
 }
 .footer .side-left {
@@ -17,12 +16,18 @@
     flex-direction: column;
     width: 50%;
 }
-.footer .side-right {
-    display: flex;
-    justify-content: space-between;
-    width: 50%;
-}
-.footer .side-left img {
+/* img {
     max-width: 33px;
     max-height: 33px;
-}
+} */
+
+@media only screen and (max-width: 760px) {
+    .footer .inner {
+        display: flex;
+        flex-direction: column;
+    
+    }
+    .footer .side-left {
+        width: 100%;
+    }
+  }

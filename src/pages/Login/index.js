@@ -9,7 +9,12 @@ function LoginPage() {
         <div>
             <Login />
             <Footer >
-                <CardPromo/>
+                <CardPromo
+                    title="Get your member card now!"
+                    btn="Create Now"
+                    desc="Let's join with our member and enjoy the deals."
+                    bottom="bottom-[51px]"
+                />
             </Footer>
         </div>
     )

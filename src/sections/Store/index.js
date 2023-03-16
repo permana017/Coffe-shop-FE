@@ -9,8 +9,8 @@ function Store() {
             <section className="map-below">
                 <div className="container">
                     <div className="text-head">
-                        <h2 className="title tw-500 text-center my-7">Visit Our Store in the Spot on the Map Below</h2>
-                        <p className="desc my-3">See our store in every city on the spot and spen your good
+                        <h2 className="md:text-5xl font-bold text-3xl w-full md:w-1/2 text-center md:my-7">Visit Our Store in the Spot on the Map Below</h2>
+                        <p className="text-md text-[#4F5665] my-3 w-full text-center md:w-1/2">See our store in every city on the spot and spen your good
                             day there. See you soon!</p>
                     </div>
                     <img src={imgWorld} alt="world-map"/>

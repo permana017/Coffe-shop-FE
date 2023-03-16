@@ -4,10 +4,11 @@ import axios from "axios";
 
 export const serviceSignIn = async (value) => {
 
+
     const postData = async () => {
         const response = await axios.post(
-            `http://localhost:5000/api/v1/auth/login`,{
-                username:value.username,
+            `https://permana-coffee.cyclic.app/api/v1/auth/login`,{
+                email:value.email,
                 password: value.password,
             },{
                 headers: {
@@ -20,7 +21,7 @@ export const serviceSignIn = async (value) => {
                    return response
                 })
                 .catch(function (error) {
-                    console.log(error);
+                    console.log(error.response.data.message);
                 })
 
         return response;
@@ -30,12 +31,12 @@ export const serviceSignIn = async (value) => {
 
 
 export const serviceSignUp = async (value) => {
-
     const postData = async () => {
         const response = await axios.post(
-            `http://localhost:5000/api/v1/auth/regiter`,{
-                username:value.username,
+            `https://permana-coffee.cyclic.app/api/v1/auth/regiter`,{
+                email:value.email,
                 password: value.password,
+                username: value.username
             },{
                 headers: {
                 'Access-Control-Allow-Headers':'*',

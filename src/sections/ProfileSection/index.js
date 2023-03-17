@@ -30,7 +30,7 @@ function ProfileSection() {
     })
 
     useEffect(() => {
-        axios.get(`http://192.168.43.225:5000/api/v1/users/${dataId}`)
+        axios.get(`https://permana-coffee.cyclic.app/api/v1/users/${dataId}`)
         .then(function (response) {
         setDefaultData(response.data.data)
         })

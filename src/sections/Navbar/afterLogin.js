@@ -58,7 +58,7 @@ const AfterLogin = ({setLogin}) =>{
     <div className="nav-profile relative">
         <img src={imgSearch} alt="search"/>
         <img src={imgChat} alt="chat"/>
-        <img src={data.img ? (`https://permana-coffee.cyclic.app/upload/images/${data.img}`) : profileDefault} onClick={()=>setShow(!show)} alt="profile" className="rounded-full" width="33px" height="33px" />
+        <img src={data?.img ? (`https://permana-coffee.cyclic.app/upload/images/${data?.img}`) : profileDefault} onClick={()=>setShow(!show)} alt="profile" className="rounded-full" width="33px" height="33px" />
         {show ? (<ShowLogout/>):null}
     </div>   
     )

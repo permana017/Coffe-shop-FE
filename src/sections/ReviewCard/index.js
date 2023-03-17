@@ -7,6 +7,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
+import Fade from 'react-reveal/Fade';
 
 const Slider = () => {
     return (
@@ -36,27 +37,29 @@ const Slider = () => {
             }}
             modules={[Pagination]}
             className="mySwiper">
-            {[1,2,3,4,5,5,5,5,5].map((item)=>(
-                <SwiperSlide className="flex justify-center">
-                    <div className="w-full flex justify-center my-10">
-                        <div className="card">
-                            <div className="navbar-card">
-                                <div className="profile">
-                                    <img src={require("src/assets/Ellipse 175.webp")} alt="Ellipse"/>
-                                    <div>
-                                        <h5>Viezh Robert</h5>
-                                        <p>Warsaw, Poland</p>
+            {[1,2,3,4,5,6,7,8,9].map((item,i)=>(
+                <SwiperSlide  className="flex justify-center">
+                    <Fade bottom delay={i * 1 * 100}>
+                        <div key={i} className="w-full flex justify-center my-10">
+                            <div className="card">
+                                <div className="navbar-card">
+                                    <div className="profile">
+                                        <img src={require("src/assets/Ellipse 175.webp")} alt="Ellipse"/>
+                                        <div>
+                                            <h5>Viezh Robert</h5>
+                                            <p>Warsaw, Poland</p>
+                                        </div>
+                                    </div>
+                                    <div className="ratting">
+                                        <p>4.5</p>
+                                        <img src={require("src/assets/star.png")} alt="star"/>
                                     </div>
                                 </div>
-                                <div className="ratting">
-                                    <p>4.5</p>
-                                    <img src={require("src/assets/star.png")} alt="star"/>
-                                </div>
+                                <p>“Wow... I am very happy to spend my whole day here. the Wi-fi is good, and
+                                    the coffee and meals tho. I like it here!! Very recommended!</p>
                             </div>
-                            <p>“Wow... I am very happy to spend my whole day here. the Wi-fi is good, and
-                                the coffee and meals tho. I like it here!! Very recommended!</p>
                         </div>
-                    </div>
+                    </Fade>
                 </SwiperSlide>
             ))}
         </Swiper>

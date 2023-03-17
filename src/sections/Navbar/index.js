@@ -7,6 +7,7 @@ import "../../style/Global.css"
 import AfterLogin from "./afterLogin";
 import BeforeLogin from "./beforeLogin";
 import NavMobile from "src/component/NavMobile";
+import Fade from 'react-reveal/Fade';
 
 function Navbar() {
     const [login, setLogin] = useState(false)
@@ -62,30 +63,42 @@ function Navbar() {
                 }
                 <div className="container">
                     <div className="inner">
-                        <div className="logo">
-                            <img src={imgNavbar} alt="coffe"/>
-                            <h3>permana coffe</h3>
+                        <div className="logo hover:scale-105 cursor-pointer">
+                            <Fade left>
+                                <img src={imgNavbar} alt="coffe"/>
+                                <h3>permana coffe</h3>
+                            </Fade>
                         </div>
                         <div className="hidden md:flex">
-                            <p
-                                onClick={() => handleOnClick("/")}
-                                className="cursor-pointer mr-5 hover:text-amber-800 hover:font-bold">Home</p>
-                            <p
-                                onClick={() => handleOnClick('/products')}
-                                className="cursor-pointer mr-5 hover:text-amber-800 hover:font-bold">Product</p>
+                            <Fade bottom>
+                                <p
+                                    onClick={() => handleOnClick("/")}
+                                    className="cursor-pointer mr-5 hover:text-amber-800 text-md hover:text-lg hover:font-bold">Home</p>
+                            </Fade>
+                            <Fade bottom delay={200}>
+                                <p
+                                    onClick={() => handleOnClick('/products')}
+                                    className="cursor-pointer mr-5 hover:text-amber-800 text-md hover:text-lg hover:font-bold">Product</p>
+                            </Fade>
+                            <Fade bottom delay={400}>
                             <p
                                 onClick={() => handleOnClick("/payment")}
-                                className="cursor-pointer mr-5 hover:text-amber-800 hover:font-bold">Your Cart</p>
-                            <p
-                                onClick={() => handleOnClick("/history")}
-                                className="cursor-pointer mr-5 hover:text-amber-800 hover:font-bold">History</p>
+                                className="cursor-pointer mr-5 hover:text-amber-800 text-md hover:text-lg hover:font-bold">Your Cart</p>
+                            </Fade>
+                            <Fade bottom delay={600}>
+                                <p
+                                    onClick={() => handleOnClick("/history")}
+                                    className="cursor-pointer mr-5 hover:text-amber-800 text-md hover:text-lg hover:font-bold">History</p>
+                            </Fade>
                         </div>
                         <div className="hidden md:flex">
-                            {
-                                login
-                                    ? (<AfterLogin isLogin={img}/>)
-                                    : (<BeforeLogin/>)
-                            }
+                            <Fade right>    
+                                {
+                                    login
+                                        ? (<AfterLogin isLogin={img}/>)
+                                        : (<BeforeLogin/>)
+                                }
+                            </Fade>
                         </div>
                         <div onClick={()=> setShowMobile(!showMobile)} className="md:hidden">
                             <img src={require("src/assets/hambuger-menu.png")} alt="menu-icon"/>

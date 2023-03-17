@@ -70,14 +70,29 @@ function CardProduct(props) {
 
 
 function CardProductAdmin(props) {
-    const {isFilter} = props
+
+
+    const {isFilter, isSearch} = props
+    console.log("in admin",isSearch);
     const navigate = useNavigate();
     const [data, setData] = useState([])
     const [isDeleteId, SetDeletId] = useState([])
 
+    const url = () =>{
+        if (isFilter !== "") {
+            return (`https://permana-coffee.cyclic.app/api/v1/products?cat=${isFilter}`)
+       } else if (isSearch !== "") {
+           return (`https://permana-coffee.cyclic.app/api/v1/products?search=${isSearch}`)
+       }else{
+           return (`https://permana-coffee.cyclic.app/api/v1/products`)
+       } 
+    }
+
+    console.log(url());
+
     const getData = () => {
         axios
-            .get(`https://permana-coffee.cyclic.app/api/v1/products?cat=${isFilter}`)
+            .get(url())
             .then(res => {
                 // console.log("data dari be");
                 setData(res.data.data)
@@ -91,13 +106,11 @@ function CardProductAdmin(props) {
     }, [isFilter]);
 
     const deleteCard = (id)=>{
-        console.log("id",id);
         let dataUser = localStorage.getItem('@userLogin')
         if (dataUser !== "undefined") { 
             dataUser = JSON.parse(dataUser)
         }
         let token = dataUser?.data.token
-        console.log("token",token);
         axios
         .delete(`https://permana-coffee.cyclic.app/api/v1/products/${id}`,{
             headers: {

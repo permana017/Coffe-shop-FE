@@ -7,32 +7,34 @@ import axios from "axios";
 
 function HistoryPage() {
 
-    const [data, setData] = useState([])
     const [idUser, setIdUser] = useState("")
+    const [data, setData] = useState([])
     // console.log("set", data);
     console.log("id history",idUser);
+    useEffect(() => {
+            getData()
+    }, [idUser]);
 
     useEffect(() => {
         let dataUser = localStorage?.getItem('@userLogin')
         if (dataUser !== "undefined") {
             dataUser = JSON.parse(dataUser)   
         }
-        setIdUser(dataUser.data.user.id)
+        setIdUser(dataUser?.data?.user?.id)
     }, [])
 
     const  getData  = () => {
-         axios
-            .get(`https://permana-coffee.cyclic.app/api/v1/order/${idUser}`)
-            .then(res => {
-                // console.log("data dari be");
-                setData(res.data.data)
-            })  
-            .catch(err => console.log(err))
+        if (idUser !== "") {  
+            axios
+               .get(`https://permana-coffee.cyclic.app/api/v1/order/${idUser}`)
+               .then(res => {
+                   setData(res.data.data)
+               })  
+               .catch(err => console.log(err))
+           }
         }
 
-    useEffect(() => {
-        getData()
-    }, [idUser]);
+
 
 
     return(

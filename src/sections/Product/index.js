@@ -117,7 +117,7 @@ function  Product(props) {
                         <section className="pl-[131px] pr-[150px] mt-20">
                             {
                                 admin
-                                    ? (<CardProductAdmin isFilter={filter} />)
+                                    ? (<CardProductAdmin isFilter={filter} isSearch={getSearch} />)
                                     : (<CardProduct isFilter={filter} isSearch={getSearch}/>)
                             }
                             <div className="mt-20">

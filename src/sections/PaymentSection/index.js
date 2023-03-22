@@ -74,9 +74,8 @@ function PaymentSection() {
                                         src={`https://permana-coffee.cyclic.app/upload/images/${dataOrder?.img}`}
                                         alt="Hazelnut Latte"
                                         width="82px"
-                                        height="90px"
-                                        className="rounded-xl mr-10"/>
-                                    <div className="w-[50%]">
+                                        className="rounded-xl mr-10 h-[75px]"/>
+                                        <div className="w-[50%]">
                                         <p>{dataOrder?.title}</p>
                                         <p>x {dataOrder?.qty}</p>
                                         <p>{size()}</p>

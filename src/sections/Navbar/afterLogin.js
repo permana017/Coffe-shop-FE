@@ -31,7 +31,9 @@ const AfterLogin = ({setLogin}) =>{
         }
 
     useEffect(() => {
-        getData()
+        if (dataId !== "") {
+            getData()
+        }
     }, [dataId]);
 
 

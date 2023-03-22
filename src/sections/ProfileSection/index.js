@@ -6,18 +6,19 @@ import avatar from "src/assets/PngItem_786293.png"
 
 
 
-function ProfileSection() {
+ function ProfileSection() {
 
 
     const [dataId, setDataId] = useState("")
     const [defaultData, setDefaultData] = useState([])
+    console.log("dafault data", defaultData);
     console.log("data id",dataId);
     const [imgDisplay, setImgDisplay] = useState("")
     useEffect(() => {
         let dataUser = localStorage.getItem('@userLogin')
         if (dataUser !== "undefined") {
             dataUser = JSON.parse(dataUser)
-            setDataId(dataUser.data.user.id);
+            setDataId(dataUser?.data?.user?.id);
         }
     }, [])
 
@@ -29,14 +30,17 @@ function ProfileSection() {
         img:""
     })
 
+
     useEffect(() => {
-        axios.get(`https://permana-coffee.cyclic.app/api/v1/users/${dataId}`)
-        .then(function (response) {
-        setDefaultData(response.data.data)
-        })
-        .catch(function (error) {
-            console.log(error);
-        })
+        if (dataId !== "") {
+            axios.get(`https://permana-coffee.cyclic.app/api/v1/users/${dataId}`)
+            .then(function (response) {
+            setDefaultData(response.data.data)
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+        }
     }, [dataId])
     
     

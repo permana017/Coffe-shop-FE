@@ -63,7 +63,7 @@ function Navbar() {
                 }
                 <div className="container">
                     <div className="inner">
-                        <div className="logo cursor-pointer">
+                        <div className="logo cursor-pointer" onClick={()=> navigate("/")}>
                             <Fade left>
                                 <img src={imgNavbar} alt="coffe"/>
                                 <h3>permana coffe</h3>

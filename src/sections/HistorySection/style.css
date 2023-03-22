@@ -13,17 +13,17 @@
 }
 .history-page .box-history{
     display: flex;
-    /* justify-content: space-between; */
+    justify-content: center;
     flex-wrap: wrap;
     margin:6rem 0;
     width: 100%;
 }
 .history-page .box-history .card-history{
     display: flex;
-    width: 29%;
+    width: 31%;
     align-items: center;
     background-color: #FFFFFF;
     padding: 20px;
     border-radius:20px;
-    margin: 2vh 2%;
+    margin-right:2% ;
 }

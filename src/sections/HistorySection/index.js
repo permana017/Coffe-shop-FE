@@ -48,7 +48,7 @@ function HistoryPage() {
                         <section className="box-history">
                             {data.map((item, i)=>(
                                 <div className="card-history" key={i}>
-                                    <img src={`https://permana-coffee.cyclic.app/upload/images/${item.img}`} alt="Veggie-tomato-mix" width="75px" height="75px" className="rounded-full mr-10"/>
+                                    <img src={`https://permana-coffee.cyclic.app/upload/images/${item.img}`} alt="Veggie-tomato-mix" width={75} className="rounded-full mr-10 h-[75px]"/>
                                     <div>
                                         <h2 className="text-block m-0 text-2xl">{item.title}</h2>
                                         <p className="text-secondary mb-0 text-xl">IDR {item.price}</p>

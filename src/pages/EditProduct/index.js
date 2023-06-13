@@ -18,24 +18,11 @@ function EditProduct() {
     let token = dataUser?.data?.token
 
     // const [img,setImg] = useState('')
-    const [isData, setIsData] = useState({tittle:"", description:"",category:"", price:"", image:"" })
-    console.log(isData);
+    const [isData, setIsData] = useState({ tittle: "", description: "", category: "", price: "", image: "" })
 
 
-    const handleUpdateData=(e,params)=>{
-        // console.log(params)
-        // if([params] == 'image'){
-        //     let file = e.target.files[0];
-        //     let fileReader = new FileReader();
-        //     fileReader.onload = (e) => {
-        //       const { result } = e.target;
-        //       setImg(result);
-        //     }
-        //     fileReader.readAsDataURL(file);
-        //     setIsData({...data,[params]:file})
-        // }else{
-            setIsData({...isData,[params]:e.target.value})
-        // }
+    const handleUpdateData = (e, params) => {
+        setIsData({ ...isData, [params]: e.target.value })
     }
     const onSubmit= ()=>{
 

@@ -9,7 +9,6 @@ export const signIn = (params) => async (dispatch) =>{
         })
         const data = await serviceSignIn(params)
         localStorage.setItem('@userLogin', JSON.stringify(data?.data))
-        console.log("data",data);
         dispatch({
             type: AuthActionTypes.SIGN_IN_SUCCESS,
             payload:data
@@ -33,7 +32,6 @@ export const signUp = (params) => async (dispatch) =>{
             type: AuthActionTypes.SIGN_IN
         })
         const data = await serviceSignUp(params)
-        // console.log("ieu data na", data)
         dispatch({
             type: AuthActionTypes.SIGN_IN_SUCCESS,
             payload:data

@@ -27,8 +27,7 @@ function SignupSection() {
                 'Access-Control-Allow-Headers':'*',
                 'content-type': 'application/x-www-form-urlencoded'
                 }
-        }).then((res)=> {
-            console.log(res.data.data)
+        }).then((res) => {
             navigate("/loginpage")
         }).catch((err)=> {
             console.log(err);

@@ -10,7 +10,6 @@ function  Product(props) {
     const navigate = useNavigate()
     const {buttonPost} = props
     const [admin, setAdmin] = useState(false)
-    // console.log(admin);
     const [filter, setFilter] = useState("")
     const [getSearch, setGetSearch] = useState("")
 
@@ -22,7 +21,6 @@ function  Product(props) {
             dataUser = JSON.parse(dataUser)
         }
         let role = dataUser?.data?.user?.role
-        console.log(dataUser);
         if ( role === "admin") {
             setAdmin(true)
         } else {

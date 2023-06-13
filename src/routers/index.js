@@ -32,22 +32,16 @@ const App = () => {
             setAdmin(true)
 
         } else {
-            // setAdmin(false)
+            setAdmin(false)
 
         }
     }, [auth])
 
     useEffect(() => {
-        console.log("admin", isAdmin);
         if (isAdmin) {
-    
-            // navigate("/ProductAdmin")
             redirect("/Products")
-            // goToProduct()
         } else {
-
             redirect("/products")
-            // navigate("/products")
         }        
         
     }, [isAdmin])
@@ -138,8 +132,6 @@ const App = () => {
             element: <Profile/>
         }
     ]
-
-    // console.log("data route admin", userAdmin);
 
 
 

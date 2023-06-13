@@ -10,9 +10,7 @@ import avatar from "src/assets/PngItem_786293.png"
 
 
     const [dataId, setDataId] = useState("")
-    const [defaultData, setDefaultData] = useState([])
-    console.log("dafault data", defaultData);
-    console.log("data id",dataId);
+     const [defaultData, setDefaultData] = useState([])
     const [imgDisplay, setImgDisplay] = useState("")
     useEffect(() => {
         let dataUser = localStorage.getItem('@userLogin')
@@ -45,11 +43,6 @@ import avatar from "src/assets/PngItem_786293.png"
     
     
 
-
-
-
-    // console.log("data yang akan di send",formEdit);
-
     const handleUpdateData=(e)=>{
         e.preventDefault();
         const file = e.target.files[0];
@@ -72,7 +65,6 @@ import avatar from "src/assets/PngItem_786293.png"
             'Content-type': 'multipart/form-data',
           }
         }).then(function (response) {
-        //   console.log(response.data.data);
         alert("success update data")
           })
           .catch(function (error) {
@@ -80,7 +72,6 @@ import avatar from "src/assets/PngItem_786293.png"
           })
       }
 
-    //   console.log(new Date().getDate());
     const Profile = () =>{
         if (defaultData.img) {
             return ( <img className="mb-3 rounded-full h-48 w-48" src={`https://permana-coffee.cyclic.app/upload/images/${defaultData.img}`} alt="profile"/>) 

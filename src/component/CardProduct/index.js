@@ -72,8 +72,7 @@ function CardProduct(props) {
 function CardProductAdmin(props) {
 
 
-    const {isFilter, isSearch} = props
-    console.log("in admin",isSearch);
+    const { isFilter, isSearch } = props
     const navigate = useNavigate();
     const [data, setData] = useState([])
     const [isDeleteId, SetDeletId] = useState([])
@@ -88,13 +87,11 @@ function CardProductAdmin(props) {
        } 
     }
 
-    console.log(url());
 
     const getData = () => {
         axios
             .get(url())
             .then(res => {
-                // console.log("data dari be");
                 setData(res.data.data)
             })
             .catch(err => console.log(err))
@@ -102,7 +99,6 @@ function CardProductAdmin(props) {
 
     useEffect(() => {
         getData()
-
     }, [isFilter]);
 
     const deleteCard = (id)=>{
@@ -122,7 +118,6 @@ function CardProductAdmin(props) {
             
         .then(res => {
             alert("Succes Deleted")
-            // console.log("success delete", res);
             getData()
         })
         .catch(err => console.log(err.response.data.message))

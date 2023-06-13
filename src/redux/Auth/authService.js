@@ -3,8 +3,6 @@ import axios from "axios";
 
 
 export const serviceSignIn = async (value) => {
-
-
     const postData = async () => {
         const response = await axios.post(
             `https://permana-coffee.cyclic.app/api/v1/auth/login`,{
@@ -16,8 +14,7 @@ export const serviceSignIn = async (value) => {
                 'content-type': 'application/x-www-form-urlencoded'
                 } 
             })
-                .then(function (response) {
-                   // console.log(response);
+            .then(function (response) {
                    return response
                 })
                 .catch(function (error) {
@@ -43,8 +40,7 @@ export const serviceSignUp = async (value) => {
                 'content-type': 'application/x-www-form-urlencoded'
                 } 
             })
-                .then(function (response) {
-                   // console.log(response);
+            .then(function (response) {
                    return response
                 })
                 .catch(function (error) {

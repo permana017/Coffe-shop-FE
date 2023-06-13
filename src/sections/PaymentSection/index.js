@@ -1,19 +1,24 @@
 import React,{useEffect, useState} from "react";
 import "src/sections/PaymentSection/style.css"
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 
 function PaymentSection() {
 
-    const [dataOrder, setDataOrder] = useState([])
+    const navigate = useNavigate()
+    const isLoggin = localStorage.getItem('@userLogin')
 
+    if (!isLoggin) {
+        navigate('/loginPage')
+    }
+    const [dataOrder, setDataOrder] = useState([])
     useEffect(() => {
         let dataUser = localStorage.getItem('@dataOrder')
         if (dataUser !== "undefined") {
             dataUser = JSON.parse(dataUser)   
             setDataOrder(dataUser)
         }
-        // console.log("data order masuk", dataUser);
     }, [])
 
 

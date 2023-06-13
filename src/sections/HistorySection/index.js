@@ -3,14 +3,20 @@ import "src/sections/HistorySection/style.css"
 import "src/style/Global.css"
 import image from "src/assets/Veggie-tomato-mix.webp"
 import axios from "axios";
+import { useNavigate } from "react-router";
 
 
 function HistoryPage() {
 
+    const navigate = useNavigate()
+    const isLoggin = localStorage.getItem('@userLogin')
+
+    if (!isLoggin) {
+        navigate('/loginPage')
+    }
+
     const [idUser, setIdUser] = useState("")
     const [data, setData] = useState([])
-    // console.log("set", data);
-    console.log("id history",idUser);
     useEffect(() => {
             getData()
     }, [idUser]);
@@ -33,8 +39,6 @@ function HistoryPage() {
                .catch(err => console.log(err))
            }
         }
-
-
 
 
     return(

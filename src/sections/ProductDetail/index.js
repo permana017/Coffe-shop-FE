@@ -16,14 +16,14 @@ function ProductDetail() {
         let dataUser = localStorage.getItem('@userLogin')
         if (dataUser !== "undefined") {
             dataUser = JSON.parse(dataUser)
-            setDataId(dataUser.data.user.id) 
+            setDataId(dataUser?.data?.user?.id) 
         }
     }, [])
 
     const total = Number(data?.price) * qty
 
     const dataOrder = {
-        user_id:dataId,
+        user_id: dataId,
         product_id:data?.id,
         title:data.tittle,
         price:total,
@@ -32,14 +32,17 @@ function ProductDetail() {
         img:data?.images[0].filename
     }
     const handleOrder =()=>{
-        if (btnactive === "") {
-            alert("masukan size")
+        let isLoggin = localStorage.getItem('@userLogin')
+        if (!isLoggin) {
+            navigate('/loginPage')
         } else {
-            console.log("success");
-            navigate("/payment")
-            localStorage.setItem('@dataOrder', JSON.stringify(dataOrder))   
+            if (btnactive === "") {
+                alert("masukan size")
+            } else {
+                navigate("/payment")
+                localStorage.setItem('@dataOrder', JSON.stringify(dataOrder))   
+            }
         }
-        // console.log("masuk orderan");
     }
 
     const size = () =>{
@@ -51,8 +54,6 @@ function ProductDetail() {
             return ("Xtra Large")
         }
     }
-
-    console.log(size());
 
 
     return (
@@ -69,7 +70,7 @@ function ProductDetail() {
                                     className="rounded-full mt-20 h-[380px]"/>
                             </div>
                             <h1 className="text-6xl mb-3 text-center font-black mt-5">{location?.state?.data?.tittle}</h1>
-                            <h3 className="text-4xl m-0 font-normal text-center font-semibold">IDR {location?.state?.data?.price}</h3>
+                            <h3 className="text-4xl m-0 text-center font-semibold">IDR {location?.state?.data?.price}</h3>
                             <button
                                 className="rounded-xl btn-secondary btn-block font-black mt-53 mb-3 text-2xl py-[25px]">Add to Cart</button>
                             <button className="rounded-xl btn-primary btn-block mb-54 text-2xl py-[25px] font-bold">Ask a Staff</button>

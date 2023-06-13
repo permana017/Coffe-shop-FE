@@ -12,7 +12,6 @@ const AfterLogin = ({setLogin}) =>{
     const[show,setShow]=useState(false)
     const [dataId, setDataId] = useState("")
     const [data, setData] = useState([])
-    // console.log("data image", data.img);
     useEffect(() => {
         let dataUser = localStorage.getItem('@userLogin')
         if (dataUser !== "undefined") {
@@ -24,7 +23,6 @@ const AfterLogin = ({setLogin}) =>{
         axios
             .get(`https://permana-coffee.cyclic.app/api/v1/users/${dataId}`)
             .then(res => {
-                // console.log("data dari be");
                 setData(res.data.data)
             })
             .catch(err => console.log(err))

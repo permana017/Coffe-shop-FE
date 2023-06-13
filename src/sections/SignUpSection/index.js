@@ -41,21 +41,21 @@ function SignupSection() {
         <main className="container2">
             <section className="auth-bg"></section>
             <section className="auth-form">
-                <nav className="flex  w-full justify-between p-[55px]">
-                    <div className="brand">
-                        <img src={require("src/assets/coffee 1.png")} alt="" width="20" height="20"/>
-                        <h3 className="font-bold text-xl">Permana Coffe</h3>
+                <nav className="flex w-full justify-between md:p-[55px] px-4 py-8">
+                    <div className="brand" onClick={()=> navigate("/")}>
+                        <img src={require("src/assets/coffee 1.png")} alt="" className="w-[20px] h-[20px] hover:cursor-pointer"/>
+                        <h3 className="text-lg md:text-xl font-bold hover:cursor-pointer">PermanaCoffe</h3>
                     </div>
                     <button 
                     onClick={()=> navigate("/loginpage")}
-                    className="btn-primary rounded-full flex items-center py-2 px-7 font-semibold">
+                    className="btn-primary rounded-full flex items-center md:py-2 py-1 md:px-7 px-4 font-semibold">
                         Login
                     </button>
                 </nav>
                 <div className="flex flex-col items-center">
-                    <h3 className="text-center text-secondary text-3xl font-bold">signup</h3>
+                    <h3 className="text-center text-secondary text-2xl md:text-3xl font-bold">signup</h3>
                     <div 
-                    className="w-[75%] py-[50px] mb-28">
+                    className="md:w-[75%] w-[90%] py-[50px] md:mb-28">
                         <div className="mb-5">
                             <label className="form-label" for="email-input">email :</label>
                             <input 
@@ -85,7 +85,7 @@ function SignupSection() {
                             <div className="text-account top-[-44px]">Already have an account?</div>
                         </div>
                         <button 
-                        className="btn btn-google arounded-xl btn-block mb-5 z-40 relative">
+                        className="flex w-full justify-center p-4 text-lg font-bold shadow-md mb-5 z-40 relative hover:shadow-xl duration-1000">
                             <img src={require("src/assets/google-icon.png")} alt="google-icon" width="27px" height="28px" className="mr-10"/>
                             Login with Google
                         </button>

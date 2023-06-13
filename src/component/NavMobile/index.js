@@ -5,10 +5,10 @@ import React from 'react'
 
 function NavMobile() {
   return (
-    <div >
+    <div>
         <div className='w-full bg-[#6A4029] rounded-r-[30px]'>
           <div className='p-12 flex flex-col justify-center items-center '>
-              <img src={require("src/assets/Ellipse 175.png")} className="w-[104px] h-[104px]"/>
+              <img src={require("src/assets/Ellipse 175.png")} alt="profile" className="w-[104px] h-[104px]"/>
               <p className='mt-3 font-bold text-[#fff]'>Zulaikha</p>
               <p className='text-[#fff]'>zulaikha17@gmail.com</p>
           </div>

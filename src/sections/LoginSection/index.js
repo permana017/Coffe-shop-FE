@@ -36,25 +36,25 @@ function Login() {
     return (
         <div>
             <main className="container2">
-                <section className="auth-bg"></section>
+                <section className="auth-bg "></section>
                 <section className="auth-form">
-                    <nav className="flex w-full justify-between p-[55px]">
-                        <div className="brand">
+                    <nav className="flex w-full justify-between md:p-[55px] px-4 py-8">
+                        <div className="brand hover:cursor-pointer" onClick={()=> navigate("/")}>
                             <img
                                 src={require("src/assets/coffee 1.png")}
                                 alt=""
-                                className="w-[20px] h-[20px]"/>
-                            <h3 className="text-xl font-bold " onClick={() => navigate('/newproduct')}>Permana Coffe</h3>
+                                className="w-[20px] h-[20px] hover:cursor-pointer"/>
+                            <h3 className="text-lg md:text-xl font-bold hover:cursor-pointer" onClick={() => navigate('/newproduct')}>PermanaCoffe</h3>
                         </div>
                         <button
                             onClick={()=>navigate("/register")}
-                            className="btn-primary rounded-full flex items-center py-2 px-7 font-semibold">
+                            className="rounded-full flex md:py-2 py-1 md:px-7 px-4 font-semibold bg-[#FFBA33]">
                             Sign Up
                         </button>
                     </nav>
-                    <div className="flex flex-col items-center">
-                        <h3 className="text-center text-secondary font-bold mb-12 text-3xl">Login</h3>
-                        <form onSubmit={handleLogin} className="pb-[200px] z-40 mt-0 w-[75%]">
+                    <div className="flex flex-col items-center mt-14">
+                        <h3 className="text-center text-secondary font-bold mb-20 md:text-3xl text-2xl">Login</h3>
+                        <form onSubmit={handleLogin} className="md:pb-[200px] pb-20 z-40 mt-0 md:w-[75%] w-[90%]">
                             <div className="mb-5">
                                 <label className="form-label" for="email-input">email :</label>
                                 <input
@@ -92,7 +92,7 @@ function Login() {
                                     className="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"/>
                                 <div className="text-account top-[-44px]">Already have an account?</div>
                             </div>
-                            <button className="btn btn-google arounded-xl btn-block mb-5 btn-primary:hover">
+                            <button type="buton" className="flex w-full justify-center p-4 text-lg font-bold shadow-md hover:shadow-xl duration-1000">
                                 <img
                                     src={require("src/assets/google-icon.png")}
                                     alt="google-icon"

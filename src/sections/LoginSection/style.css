@@ -27,3 +27,12 @@
     width: 40%;
     margin: 0 auto;
 }
+
+@media only screen and (max-width: 768px) {
+    .auth-bg{
+        display: none;
+    }
+    .auth-form{
+        flex: 1;
+    }
+  }

@@ -3,8 +3,8 @@ import "src/style/Global.css"
 
 function CardPromo({title, desc, btn, bottom}) {
     return(
-        <div>
-            <div className="box-info-wreapper">
+        <div className="">
+            <div className="box-info-wreapper hidden md:flex">
                 <div className={`info-wrapper ${bottom}`}>
                     <div className="inner">
                         <div className="box-content">

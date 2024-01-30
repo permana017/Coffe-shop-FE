@@ -4,16 +4,16 @@ import { Navbar, Banner, Favorites, TeamWork, Store, Partner, ReviewCard, Footer
 function Home() {
     return (
         <div >
-            <Navbar/>
-            <div className='md:mt-[129px]'>
-                <Banner/>
+            <Navbar />
+            <div className='md:mt-[80px]'>
+                <Banner />
             </div>
-            <TeamWork/>
-            <Favorites/>
-            <Store/>
-            <Partner/>
-            <ReviewCard/>
-            <Footer/>
+            <TeamWork />
+            <Favorites />
+            <Store />
+            <Partner />
+            <ReviewCard />
+            <Footer />
         </div>
     )
 }

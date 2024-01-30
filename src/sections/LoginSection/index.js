@@ -1,112 +1,128 @@
-import React, {useEffect, useState} from "react";
-import "src/style/Global.css"
-import "../../sections/LoginSection/style.css"
-import {signIn} from "src/redux/Auth/authAction";
-import {useDispatch, useSelector} from "react-redux";
-import {redirect, useNavigate} from "react-router-dom";
-
-
+import React, { useEffect, useState } from "react";
+import "src/style/Global.css";
+import "../../sections/LoginSection/style.css";
+import { signIn } from "src/redux/Auth/authAction";
+import { useDispatch, useSelector } from "react-redux";
+import { redirect, useNavigate } from "react-router-dom";
+import Input from "../../component/Input/index";
+import BtnPrimary from "../../component/BtnPrimary/index";
+// import SweetAlert from "../../plugin/SweatAlert";
+import Toast from "../../plugin/Toast";
+import Loader from "../../component/Loader/index";
 
 function Login() {
-    const navigate = useNavigate()
-    const {auth} = useSelector((state) => state)
+    const baseUrl = process.env.REACT_APP_API_URL;
+    const navigate = useNavigate();
+    const [toast, setToast] = useState({
+        show: false,
+        msg: "",
+        type: "",
+    });
+    const { auth } = useSelector((state) => state);
     const dispatch = useDispatch();
-    const [loginForm, setLoginForm] = useState(
-        {email: "", password: ""}
-    )
-    const [error, setError] = useState(false)
-
+    const [loginForm, setLoginForm] = useState({ email: "", password: "" });
     useEffect(() => {
-        let dataUser = localStorage.getItem('@userLogin')
+        let dataUser = localStorage.getItem("@userLogin");
         if (dataUser !== "undefined") {
-            dataUser = JSON.parse(dataUser)   
+            dataUser = JSON.parse(dataUser);
         }
-        let token = dataUser?.data?.token
+        let token = dataUser?.data?.token;
         if (token) {
-            navigate('/products')
+            navigate("/products");
         }
-        
-    }, [auth])
+        if (auth.error) {
+            setToast({ ...toast, msg: auth.error, show: true, type: "error" });
+        }
+        console.log("auth", auth);
+    }, [auth]);
 
     const handleLogin = (event) => {
-        event.preventDefault()
-        dispatch(signIn(loginForm))
-    }
+        event.preventDefault();
+        dispatch(signIn(loginForm)).catch((err) => {
+            console.log("err", err);
+        });
+    };
 
     return (
         <div>
-            <main className="container2">
-                <section className="auth-bg "></section>
-                <section className="auth-form">
-                    <nav className="flex w-full justify-between md:p-[55px] px-4 py-8">
-                        <div className="brand hover:cursor-pointer" onClick={()=> navigate("/")}>
+            <main className="w-full flex h-[100vh]">
+                <section className="auth-bg w-[60%]"></section>
+                <section className="w-full md:w-[40%] flex flex-col overflow-auto h-[100vh]">
+                    <nav className="flex w-full justify-between p-5 md:p-10 md:py-7">
+                        <div className="brand" onClick={() => navigate("/")}>
                             <img
                                 src={require("src/assets/coffee 1.png")}
                                 alt=""
-                                className="w-[20px] h-[20px] hover:cursor-pointer"/>
-                            <h3 className="text-lg md:text-xl font-bold hover:cursor-pointer" onClick={() => navigate('/newproduct')}>PermanaCoffe</h3>
+                                className="w-[20px] h-[20px] hover:cursor-pointer"
+                            />
+                            <h3 className="text-lg md:text-xl font-bold hover:cursor-pointer">
+                                PermanaCoffe
+                            </h3>
                         </div>
                         <button
-                            onClick={()=>navigate("/register")}
-                            className="rounded-full flex md:py-2 py-1 md:px-7 px-4 font-semibold bg-[#FFBA33]">
-                            Sign Up
+                            onClick={() => navigate("/register")}
+                            className="btn-primary rounded-full flex items-center md:py-2 py-1 md:px-7 px-4 font-semibold"
+                        >
+                            SignUp
                         </button>
                     </nav>
-                    <div className="flex flex-col items-center mt-14">
-                        <h3 className="text-center text-secondary font-bold mb-20 md:text-3xl text-2xl">Login</h3>
-                        <form onSubmit={handleLogin} className="md:pb-[200px] pb-20 z-40 mt-0 md:w-[75%] w-[90%]">
-                            <div className="mb-5">
-                                <label className="form-label" for="email-input">email :</label>
-                                <input
-                                    onChange={(e) => setLoginForm({
-                                        ...loginForm,
-                                        email: e.target.value
-
-                                    }, )}
-                                    className="form-input rounded-xl"
-                                    id="email-input"
-                                    type="email"
-                                    placeholder="Example: johndoe@gmail.com"/>
-                            </div>
-                            <div className="mb-5">
-                                <label className="form-label" for="password-input">Password :</label>
-                                <input
-                                    onChange={(e) => setLoginForm({
-                                        ...loginForm,
-                                        password: e.target.value
-
-                                    }, )}
-                                    className="form-input rounded-xl"
-                                    id="password-input"
-                                    type="password"
-                                    placeholder="Example: ****"/>
-                            </div>
-                            <div></div>
-                            <button type="submit" className="btn btn-primary rounded-xl btn-block mb-5 ">
-                                Login
-                            </button>
-                            <div>
-                                <hr
-                                    width="100%"
-                                    color="#C4C4C4"
-                                    className="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"/>
+                    <form onSubmit={handleLogin} className="h-[calc(100vh-100px)] flex flex-col justify-center items-center">
+                        <p className="text-center font-bold text-brown text-2xl mb-5">
+                            Login
+                        </p>
+                        <div className="p-5 md:px-10 xl:px-20 flex flex-col gap-4 w-full">
+                            <Input
+                                label="Email :"
+                                onChange={(e) =>
+                                    setLoginForm({ ...loginForm, email: e.target.value })
+                                }
+                                placeholder="Enter your email"
+                                type="email"
+                                name="email"
+                                id="email"
+                            />
+                            <Input
+                                label="Password :"
+                                onChange={(e) =>
+                                    setLoginForm({ ...loginForm, password: e.target.value })
+                                }
+                                placeholder="Enter your password"
+                                type="password"
+                                id="password"
+                                name="password"
+                            />
+                            {!auth.loading ? (
+                                <BtnPrimary type='submit' py="py-3">
+                                    Login
+                                </BtnPrimary>
+                            ) : (
+                                <BtnPrimary type='button'>
+                                    <div className="flex w-full justify-center items-center gap-1">
+                                        <Loader size="16px" /> Loading...
+                                    </div>
+                                </BtnPrimary>
+                            )}
+                            {/* <div>
+                                <hr width="100%" color="#C4C4C4" className="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700" />
                                 <div className="text-account top-[-44px]">Already have an account?</div>
                             </div>
-                            <button type="buton" className="flex w-full justify-center p-4 text-lg font-bold shadow-md hover:shadow-xl duration-1000">
-                                <img
-                                    src={require("src/assets/google-icon.png")}
-                                    alt="google-icon"
-                                    width="27px"
-                                    height="28px"
-                                    className="mr-10"/>
+                            <button
+                                className="flex w-full justify-center p-4 text-lg font-bold shadow-md mb-5 z-40 relative hover:shadow-xl duration-1000">
+                                <img src={require("src/assets/google-icon.png")} alt="google-icon" width="27px" height="28px" className="mr-10" />
                                 Login with Google
-                            </button>
-                        </form>
-                    </div>
+                            </button> */}
+                        </div>
+                        <Toast
+                            message={toast.msg}
+                            type={toast.type}
+                            show={toast.show}
+                            onClose={() => setToast({ ...toast, show: false })}
+                        />
+                    </form>
                 </section>
             </main>
         </div>
-    )
+    );
 }
 
-export default Login
+export default Login;

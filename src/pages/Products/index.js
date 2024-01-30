@@ -7,13 +7,13 @@ import Footer from "src/sections/Footer"
 
 
 function ProductPage() {
-    return(
+    return (
         <div>
-            <div className="md:mt-[129px]">
-                <Navbar/>
+            <div className="md:mt-[80px]">
+                <Navbar />
             </div>
-            <Product/>
-            <Footer/>
+            <Product />
+            <Footer />
         </div>
     )
 }

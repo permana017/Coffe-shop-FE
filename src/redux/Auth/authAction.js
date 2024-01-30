@@ -1,9 +1,9 @@
 import AuthActionTypes from "./authTypes";
-import {serviceSignIn, serviceSignUp} from "./authService"
+import { serviceSignIn, serviceSignUp } from "./authService"
 
 
-export const signIn = (params) => async (dispatch) =>{
-    try{
+export const signIn = (params) => async (dispatch) => {
+    try {
         dispatch({
             type: AuthActionTypes.SIGN_IN
         })
@@ -11,10 +11,10 @@ export const signIn = (params) => async (dispatch) =>{
         localStorage.setItem('@userLogin', JSON.stringify(data?.data))
         dispatch({
             type: AuthActionTypes.SIGN_IN_SUCCESS,
-            payload:data
+            payload: data
         })
-        return {status: 'success'}
-    }catch(error){
+        return { status: 'success' }
+    } catch (error) {
         dispatch({
             type: AuthActionTypes.SIGN_IN_FAILED,
             error
@@ -26,18 +26,18 @@ export const signIn = (params) => async (dispatch) =>{
     }
 }
 
-export const signUp = (params) => async (dispatch) =>{
-    try{
+export const signUp = (params) => async (dispatch) => {
+    try {
         dispatch({
             type: AuthActionTypes.SIGN_IN
         })
         const data = await serviceSignUp(params)
         dispatch({
             type: AuthActionTypes.SIGN_IN_SUCCESS,
-            payload:data
+            payload: data
         })
-        return {status: 'success'}
-    }catch(error){
+        return { status: 'success' }
+    } catch (error) {
         dispatch({
             type: AuthActionTypes.SIGN_IN_FAILED,
             error

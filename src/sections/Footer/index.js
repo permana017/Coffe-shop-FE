@@ -4,10 +4,10 @@ import "src/sections/Footer/style.css"
 import Fade from 'react-reveal/Fade';
 
 function Footer(props) {
-    const {children} = props
+    const { children, padding } = props
     return (
         <div>
-            <footer className="footer md:py-40">
+            <footer className={`footer md:py-10 relative ${padding}`}>
                 <div className="container">
                     {children}
                     <div className="relative my-10">
@@ -15,7 +15,7 @@ function Footer(props) {
                             <section className="side-left">
                                 <Fade left >
                                     <div className="logo flex width-2/5 items-center">
-                                        <img src={require('src/assets/coffee 1.png')} alt="coffe" className="w-8 h-8"/>
+                                        <img src={require('src/assets/coffee 1.png')} alt="coffe" className="w-8 h-8" />
                                         <h3 className="my-5 ml-3 text-xl font-semibold">permana coffe</h3>
                                     </div>
                                 </Fade>
@@ -73,19 +73,19 @@ function Footer(props) {
                                     <img
                                         src={require('src/assets/facebook.png')}
                                         alt="facebook-logo"
-                                        className="mr-2 w-8 h-8"/>
+                                        className="mr-2 w-8 h-8" />
                                 </Fade>
                                 <Fade bottom delay={700}>
                                     <img
                                         src={require('src/assets/tweeter.png')}
                                         alt="tweeter-logo"
-                                        className="mr-2 w-8 h-8"/>
+                                        className="mr-2 w-8 h-8" />
                                 </Fade>
                                 <Fade bottom delay={900}>
                                     <img
                                         src={require('src/assets/instagram.png')}
                                         alt="instagram-logo"
-                                        className="mr-2 w-8 h-8"/>
+                                        className="mr-2 w-8 h-8" />
                                 </Fade>
                             </div>
                             <Fade bottom delay={1100}>
@@ -95,7 +95,7 @@ function Footer(props) {
                     </div>
                 </div>
             </footer>
-        </div>
+        </div >
     )
 }
 

@@ -1,9 +1,9 @@
 import React from "react";
 import "src/style/Global.css"
 
-function CardPromo({title, desc, btn, bottom}) {
-    return(
-        <div className="">
+function CardPromo({ title, desc, btn, bottom, className }) {
+    return (
+        <div className={className}>
             <div className="box-info-wreapper hidden md:flex">
                 <div className={`info-wrapper ${bottom}`}>
                     <div className="inner">

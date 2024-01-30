@@ -1,6 +1,6 @@
 import React from "react";
 import "../Banner/style.css"
-import "../../style/Global.css"   
+import "../../style/Global.css"
 import imgUser from "../../assets/user.webp"
 import imgLocation from "src/assets/location.png"
 import Fade from 'react-reveal/Fade';
@@ -11,7 +11,7 @@ import Bounce from 'react-reveal/Bounce';
 
 
 function Banner() {
-    return(
+    return (
         <section className="hero">
             <div className="container mt-10 md:mt-0">
                 <div className="content">
@@ -37,7 +37,7 @@ function Banner() {
                                     <div className="info p-4 md:p-12">
                                         <section className="md:flex md:flex-row flex flex-col justify-center">
                                             <Fade bottom>
-                                                <img src={imgUser} alt="user" height="55px" width="55px" className="md:mr-10 mb-5 md:mb-0"/>
+                                                <img src={imgUser} alt="user" height="55px" width="55px" className="md:mr-10 mb-5 md:mb-0" />
                                                 <div className="flex flex-col ">
                                                     <h2 className="w-full text-center">90+</h2>
                                                     <p className="w-full text-center">Staff</p>
@@ -46,7 +46,7 @@ function Banner() {
                                         </section>
                                         <section className="md:flex md:flex-row flex flex-col justify-center">
                                             <Fade bottom delay={200}>
-                                                <img src={imgLocation} alt="user" height="55px" width="55px" className="md:mr-10 mb-5 md:mb-0"/>
+                                                <img src={imgLocation} alt="user" height="55px" width="55px" className="md:mr-10 mb-5 md:mb-0" />
                                                 <div className="flex flex-col ">
                                                     <h2 className="w-full text-center">30+</h2>
                                                     <p className="w-full text-center">Stores</p>
@@ -55,7 +55,7 @@ function Banner() {
                                         </section>
                                         <section className="md:flex md:flex-row flex flex-col justify-center">
                                             <Fade bottom delay={400}>
-                                                <img src={imgUser} alt="user" height="55px" width="55px" className="md:mr-10 mb-5 md:mb-0"/>
+                                                <img src={imgUser} alt="user" height="55px" width="55px" className="md:mr-10 mb-5 md:mb-0" />
                                                 <div className="flex flex-col ">
                                                     <h2 className="w-full text-center">800+</h2>
                                                     <p className="w-full text-center">Costumer</p>

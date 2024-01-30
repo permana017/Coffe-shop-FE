@@ -1,38 +1,35 @@
 .auth-bg {
-    background: url(src/assets/background.webp) no-repeat;
-    background-size: cover;
-    display: flex;
-    flex: 0.5;
-
+  background: url(src/assets/background.webp) no-repeat;
+  background-size: cover;
+  height: 100vh;
 }
 
 .auth-form {
-    height: 100%;
-    flex-direction: column;
-    flex: 0.5
+  flex-direction: column;
+  flex: 0.5;
 }
 
 .navbar-login {
-    display: flex;
-    flex: 0.2;
-    height: 40px;
-    justify-content: space-between;
-    padding: 1rem;
+  display: flex;
+  flex: 0.2;
+  height: 40px;
+  justify-content: space-between;
+  padding: 1rem;
 }
 
 .text-account {
-    position: relative;
-    text-align: center;
-    background: white;
-    width: 40%;
-    margin: 0 auto;
+  position: relative;
+  text-align: center;
+  background: white;
+  width: 40%;
+  margin: 0 auto;
 }
 
 @media only screen and (max-width: 768px) {
-    .auth-bg{
-        display: none;
-    }
-    .auth-form{
-        flex: 1;
-    }
+  .auth-bg {
+    display: none;
   }
+  .auth-form {
+    flex: 1;
+  }
+}

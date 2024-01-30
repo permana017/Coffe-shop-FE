@@ -11,7 +11,6 @@ import { useLocation } from "react-router-dom";
 
 function Navbar() {
     const [login, setLogin] = useState(false)
-    const [admin, setAdmin] = useState(true)
     const [img, setImg] = useState("")
     const [showMobile, setShowMobile] = useState(false)
     const location = useLocation()
@@ -34,15 +33,15 @@ function Navbar() {
         if (dataUser !== "undefined") {
             dataUser = JSON.parse(dataUser)
         }
-        let role = dataUser
-            ?.data
-            ?.user
-            ?.role
-        if (role === "admin") {
-            setAdmin(true)
-        } else {
-            setAdmin(false)
-        }
+        // let role = dataUser
+        //     ?.data
+        //     ?.user
+        //     ?.role
+        // if (role === "admin") {
+        //     setAdmin(true)
+        // } else {
+        //     setAdmin(false)
+        // }
 
     }, [])
 
@@ -52,8 +51,8 @@ function Navbar() {
     }
 
     return (
-        <div>
-            <nav className="navbar">
+        <div className="flex justify-center w-full bg-white fixed top-0 z-50">
+            <nav className="flex justify-center h-[80px] items-center w-full">
                 {
                     showMobile
                         ? <div className="relative w-full bg-transparent">
@@ -64,10 +63,10 @@ function Navbar() {
                         : null
                 }
                 <div className="container">
-                    <div className="inner">
-                        <div className="logo cursor-pointer" onClick={() => navigate("/")}>
-                            <img src={imgNavbar} className="md:w-[30px] md:h-[35px] w-[25px] h-[28px]" alt="coffe" />
-                            <h3 className="text-md md:text-xl md:ml-3 ml-2 text-[#0B132A]">permana coffe</h3>
+                    <div className="flex justify-between items-center p-2 w-full">
+                        <div className="flex items-center cursor-pointer" onClick={() => navigate("/")}>
+                            <img src={imgNavbar} className="md:w-7 md:h-7 w-[25px] h-[28px]" alt="coffe" />
+                            <h3 className="text-md md:text-xl md:ml-3 ml-2 text-[#0B132A] font-semibold">permana coffe</h3>
                         </div>
                         <div className="hidden md:flex">
                             <p

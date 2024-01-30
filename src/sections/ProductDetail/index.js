@@ -5,6 +5,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import BtnPrimary from "../../component/BtnPrimary";
 import BtnSecondary from "../../component/BtnSecondary";
+import { ToastContainer, toast } from 'react-toastify';
 
 function ProductDetail() {
     const navigate = useNavigate();
@@ -41,7 +42,9 @@ function ProductDetail() {
             navigate("/loginPage");
         } else {
             if (btnactive === "") {
-                alert("masukan size");
+                toast.warning('Choose a size', {
+                    theme: 'colored'
+                })
             } else {
                 navigate("/payment");
                 localStorage.setItem("@dataOrder", JSON.stringify(dataOrder));
@@ -180,6 +183,7 @@ function ProductDetail() {
                     </section>
                 </div>
             </main>
+            <ToastContainer />
         </div>
     );
 }

@@ -1,9 +1,15 @@
 import React, { useEffect, useState } from "react";
 import "src/style/Global.css";
 import "src/sections/Product/style.css";
-import { CardProduct, CardProductAdmin } from "src/component/CardProduct";
+import {
+  CardProduct,
+  CardProductAdmin,
+  ListProductAdmin,
+  ListProductPublic,
+} from "src/component/CardProduct";
 import { useNavigate } from "react-router-dom";
 import search from "src/assets/search.svg";
+import BtnSecondary from "../../component/BtnSecondary";
 
 function Product(props) {
   const navigate = useNavigate();
@@ -12,9 +18,9 @@ function Product(props) {
   const [getSearch, setGetSearch] = useState("");
   const listFilter = [
     { label: "Favorit Product", value: "" },
-    { label: "Coffe", value: "Coffe" },
-    { label: "Non Coffe", value: "Non Coffe" },
-    { label: "Foods", value: "Foods" },
+    { label: "Coffe", value: "coffe" },
+    { label: "Non Coffe", value: "nonCoffe" },
+    { label: "Foods", value: "food" },
   ];
   const styleListFilter =
     "cool-link text-gray-400 font-bold hover:text-brown cursor-pointer";
@@ -36,50 +42,46 @@ function Product(props) {
   return (
     <div className="w-full">
       <main className="w-full flex justify-center border-t-[4px] border-[#9F9F9F]">
-        <section className="p-0 flex max-w-[1440px] w-full">
-          <section className="product-promo">
-            <div className="flex flex-col items-start">
-              <h3 className=" title text-secondary text-2xl font-semibold my-6 mt-20">
+        <section className="container flex">
+          <section className="border-r-4 p-5 hidden lg:flex lg:w-[30%] flex-col items-center gap-5">
+            <div className="w-3/4">
+              <p className="text-xl font-bold mb-5 text-[#6A4029] text-center">
                 Promo for you
-              </h3>
-              <p className=" mb-10 text-xs w-3/4">
+              </p>
+              <p className="text-sm text-center">
                 Coupons will be updated every weeks. Check them out!
               </p>
-            </div>
-            <div className="card-promo mt-14">
-              <div className="inner rounded-xl">
-                <div className="content-promo">
+              <div className="mt-5">
+                <div className="bg-[#FFCB65] rounded-xl p-5 flex flex-col items-center mb-5">
                   <img
                     src={require("src/assets/Beef-Spaghetti.webp")}
                     alt=""
-                    width="128px"
-                    height="128px"
-                    className="rounded-full mt-10"
+                    width="120px"
+                    height="120px"
+                    className="rounded-full mb-5 "
                   />
                   <h3 className="mb-0 text-xl font-semibold">Beef Spaghetti</h3>
                   <h3 className="m-0 text-xl font-semibold">20% OFF</h3>
-                  <p className="text-sm mb-5 tw-250 my-5">
+                  <p className="text-xs mb-5 my-5 text-center">
                     Buy 1 Choco Oreo and get 20% off for Beef Spaghetti
                   </p>
                   <hr width="100%" />
+                  <div className="coupun-code">
+                    <p className="mb-3 text-center text-base">COUPON CODE</p>
+                    <h2 className="mb-3 text-center text-2xl font-semibold">
+                      FNPR15RG
+                    </h2>
+                    <p className="m-0 text-center text-xs">
+                      Valid untill October 10th 2020
+                    </p>
+                  </div>
                 </div>
-                <div className="coupun-code">
-                  <p className="mb-3 text-center text-base">COUPON CODE</p>
-                  <h2 className="mb-3 text-center text-2xl font-semibold">
-                    FNPR15RG
-                  </h2>
-                  <p className="m-0 text-center text-xs">
-                    Valid untill October 10th 2020
-                  </p>
-                </div>
+                {/* <div className="box-black rounded-xl"></div>
+              <div className="box-brown rounded-xl"></div> */}
               </div>
-              <div className="box-black rounded-xl"></div>
-              <div className="box-brown rounded-xl"></div>
+              <BtnSecondary>Apply Coupon</BtnSecondary>
             </div>
-            <button className="btn btn-secondary mt-12 mb-20 my-6 text-white">
-              Apply Coupon
-            </button>
-            <div className="desc-product mb-5 ">
+            <div className="text-xs text-[#4F5665]">
               <h5>Terms and Condition</h5>
               <p>
                 1. You can only apply 1 coupon per day
@@ -93,9 +95,9 @@ function Product(props) {
               </p>
             </div>
           </section>
-          <section className="w-full p-5 lg:w-[70%] lg:pl-20 lg:pr-8 md:px-10">
-            <nav className="w-full flex p-5">
-              <ul className="flex w-full gap-10 justify-between px-10">
+          <section className="w-full mt-20 lg:mt-0 p-5 lg:w-[70%] lg:pl-14 lg:pr-8 md:px-10 ">
+            <nav className="w-full flex pb-3 justify-center">
+              <ul className="flex w-full lg:w-2/3 justify-between ">
                 {listFilter.map((item, i) => (
                   <li
                     key={i}
@@ -111,37 +113,29 @@ function Product(props) {
                 ))}
               </ul>
             </nav>
-            <div className="py-3 w-[100%] flex justify-end">
-              <div className="w-full md:w-1/2 flex  relative items-center">
-                <div className="absolute top-[15px] left-4 border-r-2 border-[#4F5665] ">
+            <div className="w-full flex justify-end">
+              <div className="w-full md:w-1/2 flex relative items-center">
+                <div className="absolute top-[12px] left-4 border-r-2 border-[#4F5665]">
                   <img src={search} width={20} alt="search" className="mr-2" />
                 </div>
                 <input
                   type="text"
                   placeholder="Search"
-                  className="px-4 py-3 w-full bg-[#EFEEEE] rounded-full pl-12 focus:outline-none"
+                  className="px-4 py-2.5 w-full bg-[#EFEEEE] rounded-full pl-12 focus:outline-none"
                   onChange={(e) => setGetSearch(e.target.value)}
                 />
               </div>
             </div>
             <section className="mt-20 flex justify-center mb-10">
               {admin ? (
-                <CardProductAdmin isFilter={filter} isSearch={getSearch} />
+                <ListProductAdmin
+                  isFilter={filter}
+                  isSearch={getSearch}
+                  isAdmin={admin}
+                />
               ) : (
-                <CardProduct isFilter={filter} isSearch={getSearch} />
+                <ListProductPublic isFilter={filter} isSearch={getSearch} />
               )}
-              <div className="mt-20">
-                {admin ? (
-                  <div className="w-full flex justify-center">
-                    <button
-                      onClick={() => navigate("/newProduct")}
-                      className="bottom-[40px] relative bg-yellow-800 hover:bg-yellow-900 hover:shadow-lg shadow-black-500/50 text-white font-bold py-7 px-7 rounded-xl text-xl w-full"
-                    >
-                      Add New Product
-                    </button>
-                  </div>
-                ) : null}
-              </div>
             </section>
           </section>
         </section>

@@ -7,6 +7,8 @@ function ProfileSection() {
   const [dataId, setDataId] = useState("");
   const [defaultData, setDefaultData] = useState([]);
   const [imgDisplay, setImgDisplay] = useState("");
+  const baseUrlCloudinary = process.env.REACT_APP_CLOUDINARY_URL;
+  const baseUrl = process.env.REACT_APP_API_URL;
   useEffect(() => {
     let dataUser = localStorage.getItem("@userLogin");
     if (dataUser !== "undefined") {
@@ -25,7 +27,7 @@ function ProfileSection() {
 
   const fetchData = () => {
     axios
-      .get(`https://permana-coffee.cyclic.app/api/v1/users/${dataId}`)
+      .get(`${baseUrl}users/${dataId}`)
       .then(function (response) {
         setDefaultData(response.data.data);
         console.log(defaultData);
@@ -57,7 +59,7 @@ function ProfileSection() {
     body.append("address", formEdit.address);
     body.append("img", formEdit.img);
     axios
-      .patch(`https://permana-coffee.cyclic.app/api/v1/users/${dataId}`, body, {
+      .patch(`${baseUrl}users/${dataId}`, body, {
         method: "PATCH",
         headers: {
           "Content-type": "multipart/form-data",
@@ -106,7 +108,9 @@ function ProfileSection() {
     <div>
       <main className="bg-profile mt-20 py-20">
         <div className="container">
-          <div className="text-3xl  text-white font-bold">User Profile</div>
+          <div className="text-3xl  text-white font-bold">
+            User Profilasdasde
+          </div>
           <div className="bg-[#F8F8F8] w-full h-[951px] mt-10 rounded-3xl p-12 flex gap-8">
             <div className=" w-[35%] h-full flex justify-center">
               <div className="w-full flex items-center flex-col">

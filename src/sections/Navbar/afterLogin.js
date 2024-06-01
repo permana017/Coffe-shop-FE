@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const AfterLogin = ({ setLogin }) => {
+  const baseUrl = process.env.REACT_APP_API_URL;
   const navigate = useNavigate();
   const [show, setShow] = useState(false);
   const [dataId, setDataId] = useState("");
@@ -19,7 +20,7 @@ const AfterLogin = ({ setLogin }) => {
   }, []);
   const getData = () => {
     axios
-      .get(`https://permana-coffee.cyclic.app/api/v1/users/${dataId}`)
+      .get(`${baseUrl}users/${dataId}`)
       .then((res) => {
         setData(res.data.data);
       })

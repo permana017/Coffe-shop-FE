@@ -95,8 +95,8 @@ function Product(props) {
               </p>
             </div>
           </section>
-          <section className="w-full mt-20 lg:mt-0 p-5 lg:w-[70%] lg:pl-14 lg:pr-8 md:px-10 ">
-            <nav className="w-full flex pb-3 justify-center">
+          <section className="w-full mt-12 lg:mt-0 p-1 lg:w-[70%] lg:pl-14 lg:pr-8">
+            <nav className="w-full flex p-5 justify-center">
               <ul className="flex w-full lg:w-2/3 justify-between ">
                 {listFilter.map((item, i) => (
                   <li

@@ -4,7 +4,6 @@ import Home from "../pages/Home";
 import Products from "src/pages/Products";
 import History from "src/pages/History";
 import NewProduct from "src/pages/NewProduct";
-import EditProduct from "src/pages/EditProduct";
 import LoginPage from "src/pages/Login";
 import SignUpPage from "src/pages/SignUpPage";
 import ForgotPassPage from "src/pages/ForgotPasswordPage";

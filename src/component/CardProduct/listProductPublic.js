@@ -42,7 +42,7 @@ function ListProductPublic(props) {
   }, [isFilter, isSearch]);
 
   return (
-    <div>
+    <div className="w-full">
       {!loading ? (
         <section className="w-full grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-5 gap-y-20">
           {data?.map((item, i) => (
@@ -50,7 +50,7 @@ function ListProductPublic(props) {
               to="/detailproduct"
               state={{ data: item }}
               key={i}
-              className="bg-white rounded-2xl flex flex-col items-center relative p-5 justify-end border shadow-lg"
+              className="bg-white rounded-2xl flex flex-col items-center relative p-4 justify-end border shadow-lg"
             >
               <img
                 src={`${baseUrlCloudinary}${item.images[0].filename}`}
@@ -61,7 +61,7 @@ function ListProductPublic(props) {
                 <h2 className="text-center text-xl font-bold mb-5">
                   {item.tittle}
                 </h2>
-                <h3 className="text-center text-secondary font-semibold bottom-6 mb-4">
+                <h3 className="text-center text-secondary font-semibold bottom-6">
                   IDR {item.price}
                 </h3>
               </div>
@@ -69,16 +69,16 @@ function ListProductPublic(props) {
           ))}
         </section>
       ) : (
-        <div className="w-full flex flex-wrap gap-5 gap-y-20">
+        <section className="w-full grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-5 gap-y-20">
           {[1, 2, 3, 4].map((item) => (
-            <div className="p-5 rounded-3xl shadow-xl col-span-1 w-48 h-52 relative bg-white border">
-              <div className="bg-slate-300 w-28 h-28 rounded-full absolute -top-14 right-8  animate-pulse"></div>
+            <div className="p-5 rounded-3xl shadow-xl col-span-1 h-52 relative bg-white border">
+              <div className="bg-slate-300 w-28 h-28 rounded-full absolute -top-14 right-[22px]  animate-pulse"></div>
               <div className="p-2.5 rounded bg-slate-300 mt-12  animate-pulse"></div>
               <div className="p-2.5 rounded bg-slate-300 mt-2 w-1/2  animate-pulse"></div>
               <div className="p-2 rounded bg-slate-300 mt-12  animate-pulse"></div>
             </div>
           ))}
-        </div>
+        </section>
       )}
     </div>
   );

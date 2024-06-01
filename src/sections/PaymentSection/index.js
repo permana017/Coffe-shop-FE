@@ -11,7 +11,7 @@ function PaymentSection() {
   const isLoggin = localStorage.getItem("@userLogin");
   const [loading, setLoading] = useState(false);
   const baseUrlCloudinary = process.env.REACT_APP_CLOUDINARY_URL;
-
+  const baseUrl = process.env.REACT_APP_API_URL;
   if (!isLoggin) {
     navigate("/loginPage");
   }
@@ -51,7 +51,7 @@ function PaymentSection() {
     setLoading(true);
     axios
       .post(
-        "https://permana-coffee.cyclic.app/api/v1/order",
+        `${baseUrl}order`,
         {
           ...formUpload,
         },

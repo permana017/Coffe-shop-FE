@@ -6,14 +6,14 @@ import { useNavigate } from "react-router";
 
 function HistoryPage() {
   const navigate = useNavigate();
+  const baseUrl = process.env.REACT_APP_API_URL;
+  const baseUrlCloudinary = process.env.REACT_APP_CLOUDINARY_URL;
+  const [idUser, setIdUser] = useState("");
+  const [data, setData] = useState([]);
   const isLoggin = localStorage.getItem("@userLogin");
-
   if (!isLoggin) {
     navigate("/loginPage");
   }
-
-  const [idUser, setIdUser] = useState("");
-  const [data, setData] = useState([]);
   useEffect(() => {
     getData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -30,7 +30,7 @@ function HistoryPage() {
   const getData = () => {
     if (idUser !== "") {
       axios
-        .get(`https://permana-coffee.cyclic.app/api/v1/order/${idUser}`)
+        .get(`${baseUrl}order/${idUser}`)
         .then((res) => {
           setData(res.data.data);
         })
@@ -40,29 +40,36 @@ function HistoryPage() {
 
   return (
     <div>
-      <main className="history-page">
-        <section className="container min-h-[1000px] mt-[150px]">
-          <section className="desc-history">
+      <main className="history-page min-h-[100vh]">
+        <section className="container mt-[150px]">
+          <section className="text-white">
             <h1 className="text-label text-center mb-3">
               Let’s see what you have bought!
             </h1>
-            <p className="text-center m-0">Long press to delete item</p>
+            <p className="text-center m-0">Select to delete item</p>
           </section>
-          <section className="box-history">
+          <section className="grid grid-cols-3 gap-5 p-10">
             {data.map((item, i) => (
-              <div className="card-history" key={i}>
-                <img
-                  src={`https://permana-coffee.cyclic.app/upload/images/${item.img}`}
-                  alt="Veggie-tomato-mix"
-                  width={75}
-                  className="rounded-full mr-10 h-[75px]"
-                />
+              <div
+                className="bg-white p-3 flex gap-5 items-center rounded-lg w-full"
+                key={i}
+              >
                 <div>
-                  <h2 className="text-block m-0 text-2xl">{item.title}</h2>
-                  <p className="text-secondary mb-0 text-xl">
+                  <img
+                    src={`${baseUrlCloudinary}${item.img}`}
+                    alt="Veggie-tomato-mix"
+                    className="rounded-full w-16 h-16 bg-red-300"
+                  />
+                </div>
+                <div className="w-full">
+                  <h2 className="text-lg font-bold">{item.title}</h2>
+                  <p className="text-secondary text-sm font-semibold">
                     IDR {item.price}
                   </p>
-                  <p className="text-secondary m-0 text-xl">Delivered</p>
+                  <div className="flex items-center justify-between">
+                    <p className="text-sm text-secondary">Delivered</p>
+                    <input type="checkbox" className="w-4 h-4" />
+                  </div>
                 </div>
               </div>
             ))}

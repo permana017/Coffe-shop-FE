@@ -8,11 +8,16 @@ import AfterLogin from "./afterLogin";
 import BeforeLogin from "./beforeLogin";
 import NavMobile from "src/component/NavMobile";
 import { useLocation } from "react-router-dom";
+import axios from "axios";
 
 function Navbar() {
+  const baseUrl = process.env.REACT_APP_API_URL;
   const [login, setLogin] = useState(false);
   const [img, setImg] = useState("");
   const [showMobile, setShowMobile] = useState(false);
+  const [dataId, setDataId] = useState("");
+  const [data, setData] = useState([]);
+
   const location = useLocation();
 
   const listMenuActive =
@@ -34,16 +39,23 @@ function Navbar() {
     if (dataUser !== "undefined") {
       dataUser = JSON.parse(dataUser);
     }
-    // let role = dataUser
-    //     ?.data
-    //     ?.user
-    //     ?.role
-    // if (role === "admin") {
-    //     setAdmin(true)
-    // } else {
-    //     setAdmin(false)
-    // }
+    setDataId(dataUser?.data?.user?.id);
   }, []);
+
+  const getData = () => {
+    axios
+      .get(`${baseUrl}users/${dataId}`)
+      .then((res) => {
+        setData(res.data.data);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  useEffect(() => {
+    if (dataId !== "") {
+      getData();
+    }
+  }, [dataId]);
 
   const handleOnClick = (route) => {
     setImg(route);
@@ -57,7 +69,7 @@ function Navbar() {
   return (
     <div className="flex justify-center w-full bg-white fixed top-0 z-50">
       <nav className="flex justify-center h-[60px] lg:h-[80px] items-center w-full">
-        {showMobile ? <NavMobile onClose={onCloseDrawer} /> : null}
+        {showMobile ? <NavMobile data={data} onClose={onCloseDrawer} /> : null}
         <div className="container">
           <div className="flex justify-between items-center p-2 w-full">
             <div
@@ -114,7 +126,11 @@ function Navbar() {
               </p>
             </div>
             <div className="hidden md:flex">
-              {login ? <AfterLogin isLogin={img} /> : <BeforeLogin />}
+              {login ? (
+                <AfterLogin isLogin={img} data={data} />
+              ) : (
+                <BeforeLogin />
+              )}
             </div>
             <div className="md:hidden">
               {login ? (

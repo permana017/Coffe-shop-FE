@@ -1,38 +1,12 @@
 // import imgSearch from "src/assets/search.svg"
 // import imgChat from "src/assets/chat.svg"
 import profileDefault from "src/assets/PngItem_786293.png";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 
-const AfterLogin = ({ setLogin }) => {
-  const baseUrl = process.env.REACT_APP_API_URL;
+const AfterLogin = ({ isLogin, data }) => {
   const navigate = useNavigate();
   const [show, setShow] = useState(false);
-  const [dataId, setDataId] = useState("");
-  const [data, setData] = useState([]);
-  useEffect(() => {
-    let dataUser = localStorage.getItem("@userLogin");
-    if (dataUser !== "undefined") {
-      dataUser = JSON.parse(dataUser);
-    }
-    setDataId(dataUser?.data?.user?.id);
-  }, []);
-  const getData = () => {
-    axios
-      .get(`${baseUrl}users/${dataId}`)
-      .then((res) => {
-        setData(res.data.data);
-      })
-      .catch((err) => console.log(err));
-  };
-
-  useEffect(() => {
-    if (dataId !== "") {
-      getData();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dataId]);
 
   const onLogout = () => {
     localStorage.removeItem("@userLogin");

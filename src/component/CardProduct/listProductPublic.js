@@ -71,9 +71,11 @@ function ListProductPublic(props) {
       ) : (
         <section className="w-full grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-5 gap-y-20">
           {[1, 2, 3, 4].map((item) => (
-            <div className="p-5 rounded-3xl shadow-xl col-span-1 h-52 relative bg-white border">
-              <div className="bg-slate-300 w-28 h-28 rounded-full absolute -top-14 right-[22px]  animate-pulse"></div>
-              <div className="p-2.5 rounded bg-slate-300 mt-12  animate-pulse"></div>
+            <div className="p-5 rounded-3xl shadow-xl col-span-1 h-52 relative bg-white border ">
+              <div className="flex justify-center">
+                <div className="bg-slate-300 w-28 h-28 rounded-full -mt-20 animate-pulse"></div>
+              </div>
+              <div className="p-2.5 rounded bg-slate-300 mt-5 animate-pulse"></div>
               <div className="p-2.5 rounded bg-slate-300 mt-2 w-1/2  animate-pulse"></div>
               <div className="p-2 rounded bg-slate-300 mt-12  animate-pulse"></div>
             </div>

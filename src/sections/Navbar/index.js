@@ -50,16 +50,14 @@ function Navbar() {
     navigate(route);
   };
 
+  const onCloseDrawer = () => {
+    setShowMobile(!showMobile);
+  };
+
   return (
     <div className="flex justify-center w-full bg-white fixed top-0 z-50">
       <nav className="flex justify-center h-[60px] lg:h-[80px] items-center w-full">
-        {showMobile ? (
-          <div className="relative w-full bg-transparent">
-            <div className="absolute w-[80%] h-[100vh] z-20 bg-[#F2F2F2] rounded-tr-[30px]">
-              <NavMobile />
-            </div>
-          </div>
-        ) : null}
+        {showMobile ? <NavMobile onClose={onCloseDrawer} /> : null}
         <div className="container">
           <div className="flex justify-between items-center p-2 w-full">
             <div

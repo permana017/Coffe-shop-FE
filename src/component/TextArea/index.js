@@ -1,12 +1,11 @@
 import React from "react";
 
-const Input = ({
+const InputTextArea = ({
   onChange,
   label,
   type,
   placeholder,
   value,
-  defaultValue,
   name,
   id,
   outline,
@@ -22,7 +21,7 @@ const Input = ({
       <label className="text-brown font-semibold" htmlFor={id}>
         {label}
       </label>
-      <input
+      <textarea
         autoComplete="off"
         name={name}
         value={value}
@@ -32,9 +31,8 @@ const Input = ({
         placeholder={placeholder}
         id={id}
         disabled={disabled}
-        defaultValue={defaultValue}
       />
     </div>
   );
 };
-export default Input;
+export default InputTextArea;

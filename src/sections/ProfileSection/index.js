@@ -2,13 +2,30 @@ import React, { useState, useEffect } from "react";
 import "src/sections/ProfileSection/style.css";
 import axios from "axios";
 import avatar from "src/assets/PngItem_786293.png";
+import Input from "../../component/Input";
+import InputTextArea from "../../component/TextArea";
+import BtnPrimary from "../../component/BtnPrimary";
+import BtnSecondary from "../../component/BtnSecondary";
+import { useNavigate } from "react-router-dom";
+
+const BtnEdit = ({ onClick }) => {
+  return (
+    <button onClick={onClick} className="bg-[#6A4029] p-2 rounded-full">
+      <img src={require("src/assets/pena.png")} className="w-3 h-3" alt="" />
+    </button>
+  );
+};
 
 function ProfileSection() {
   const [dataId, setDataId] = useState("");
   const [defaultData, setDefaultData] = useState([]);
   const [imgDisplay, setImgDisplay] = useState("");
-  const baseUrlCloudinary = process.env.REACT_APP_CLOUDINARY_URL;
+  const [isEdit, setIsEdit] = useState({
+    contact: false,
+    detail: false,
+  });
   const baseUrl = process.env.REACT_APP_API_URL;
+  const navigate = useNavigate();
   useEffect(() => {
     let dataUser = localStorage.getItem("@userLogin");
     if (dataUser !== "undefined") {
@@ -23,6 +40,7 @@ function ProfileSection() {
     phone: "",
     address: "",
     img: "",
+    image_url: "",
   });
 
   const fetchData = () => {
@@ -30,12 +48,28 @@ function ProfileSection() {
       .get(`${baseUrl}users/${dataId}`)
       .then(function (response) {
         setDefaultData(response.data.data);
-        console.log(defaultData);
       })
       .catch(function (error) {
         console.log(error);
       });
   };
+
+  const setDefaultForm = () => {
+    if (defaultData) {
+      setFormEdit({
+        ...formEdit,
+        address: defaultData.address,
+        email: defaultData.email,
+        username: defaultData.username,
+        phone: defaultData.phone,
+        img: defaultData.img,
+      });
+    }
+  };
+
+  useEffect(() => {
+    setDefaultForm();
+  }, [defaultData]);
 
   useEffect(() => {
     if (dataId !== "") {
@@ -44,7 +78,7 @@ function ProfileSection() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dataId]);
 
-  const handleUpdateData = (e) => {
+  const handleInputImg = (e) => {
     e.preventDefault();
     const file = e.target.files[0];
     setFormEdit({ ...formEdit, img: file });
@@ -74,195 +108,173 @@ function ProfileSection() {
       });
   };
 
-  const Profile = () => {
-    if (defaultData.image_url) {
-      return (
-        <img
-          className="mb-3 rounded-full h-48 w-48"
-          src={defaultData.image_url}
-          alt="profile"
-        />
-      );
-    } else {
-      return (
-        <img
-          className="mb-3 rounded-full h-48 w-48"
-          src={avatar}
-          alt="profile"
-        />
-      );
-    }
+  const imageSrc = () => {
+    if (imgDisplay) return imgDisplay;
+    if (defaultData.image_url) return defaultData.image_url;
+    return avatar;
   };
 
-  const ImgChange = () => {
-    return (
-      <img
-        className="mb-3 rounded-full h-48 w-48"
-        src={imgDisplay}
-        alt="profile"
-      />
-    );
+  const handleChangeInput = (e) => {
+    const { name, value } = e.target;
+    setFormEdit({
+      ...formEdit,
+      [name]: value,
+    });
+  };
+
+  const handleCancleEdit = () => {
+    setIsEdit({
+      ...isEdit,
+      contact: false,
+      detail: false,
+    });
+    setDefaultForm();
+  };
+
+  const onLogout = () => {
+    localStorage.removeItem("@userLogin");
+    navigate("/");
   };
 
   return (
     <div>
-      <main className="bg-profile mt-20 py-20">
-        <div className="container">
-          <div className="text-3xl  text-white font-bold">
-            User Profilasdasde
-          </div>
-          <div className="bg-[#F8F8F8] w-full h-[951px] mt-10 rounded-3xl p-12 flex gap-8">
-            <div className=" w-[35%] h-full flex justify-center">
-              <div className="w-full flex items-center flex-col">
-                <div className="text-center">
-                  {formEdit.img === "" ? <Profile /> : <ImgChange />}
-                  <p className="">{defaultData.username}</p>
-                  <p>{defaultData.email}</p>
-                </div>
-                <div className="w-full mt-5">
-                  <input
-                    multiple
-                    hidden
-                    type="file"
-                    accept="image/*"
-                    id="file"
-                    onChange={(e) => handleUpdateData(e)}
+      <main className="bg-profile mt-20 py-10">
+        <div className="container flex flex-col gap-5">
+          <p className="text-2xl text-white font-bold">User Profile</p>
+          <div className="flex flex-col lg:flex-row justify-between lg:mb-10 gap-5">
+            <div className="bg-white flex flex-col items-center justify-between w-full lg:w-[25%] rounded-lg p-5 py-8">
+              <div className="flex flex-col items-center">
+                <div className="relative">
+                  <img
+                    className="mb-3 rounded-full w-28 h-28"
+                    src={imageSrc()}
+                    alt="profile"
                   />
-                  <label
-                    for="file"
-                    className="btn-primary py-4 flex w-full justify-center rounded-md font-bold"
-                  >
-                    Choose Photo
-                  </label>
+                  <div className="absolute bottom-2 right-0">
+                    <label htmlFor="editImage">
+                      <div className="bg-[#6A4029] p-2 rounded-full cursor-pointer">
+                        <img
+                          src={require("src/assets/pena.png")}
+                          className="w-3 h-3"
+                          alt=""
+                        ></img>
+                      </div>
+                    </label>
+                    <input
+                      type="file"
+                      id="editImage"
+                      onChange={handleInputImg}
+                    />
+                  </div>
                 </div>
-                <button className="px-0 btn-secondary btn-block py-4 mt-3 rounded-md font-bold">
-                  Remove Photo
-                </button>
-                <button className="border-2 border-[#9F9F9F] rounded-xl py-4 w-full my-10 text-xl text-[#6A4029] font-bold">
-                  Edit Password
-                </button>
-                <p className="text-xl text-center font-bold text-[#6A4029]">
-                  Do you want to save the change?
-                </p>
-                <button
-                  onClick={handleEdit}
-                  className="px-0 btn-secondary btn-block py-4 mt-10 rounded-2xl  font-bold"
-                >
-                  Save Change
-                </button>
-                <button className="px-0 btn-primary  btn-block py-4 mt-3 rounded-2xl  font-bold">
-                  Cancle
-                </button>
+                <p className="font-bold text-lg">{defaultData?.username}</p>
+                <p className="text-sm">{defaultData.email}</p>
+              </div>
+              <p className="text-sm mt-6">Has been ordered 15 products</p>
+            </div>
+            <div className="bg-[#fff] w-full lg:w-[70%] rounded-lg shadow-xl p-5 flex flex-col">
+              <div className="mb-5 flex justify-between">
+                <p className="text-[#4F5665] font-bold text-xl">Contacts</p>
+                {!isEdit.contact && (
+                  <BtnEdit
+                    onClick={() => setIsEdit({ ...isEdit, contact: true })}
+                  />
+                )}
+              </div>
+              <div className="grid lg:grid-cols-2 gap-10 gap-y-3">
+                <Input
+                  label="Email Address :"
+                  placeholder="Input ypur email"
+                  type="email"
+                  disabled={!isEdit.contact}
+                  value={formEdit.email}
+                  name="email"
+                  onChange={handleChangeInput}
+                />
+                <Input
+                  label="Mobile number :"
+                  placeholder="Input your mobile number"
+                  disabled={!isEdit.contact}
+                  value={formEdit.phone}
+                  name="phone"
+                  onChange={handleChangeInput}
+                />
+
+                <InputTextArea
+                  label="Delivery adress :"
+                  placeholder="Input your delivery address"
+                  disabled={!isEdit.contact}
+                  value={formEdit.address}
+                  name="address"
+                  onChange={handleChangeInput}
+                />
               </div>
             </div>
-            <div className="bg-[#fff] w-[65%] h-full rounded-2xl shadow-xl px-5 py-3 flex flex-col">
-              <div className="flex">
-                <div className="w-[50%]">
-                  <div className="flex flex-col">
-                    <p className="text-[#4F5665] font-bold text-2xl">
-                      Contacts
-                    </p>
-                    <label className="text-xl text-[#9F9F9F] mt-10">
-                      Email adress :
-                    </label>
-                    <input
-                      onChange={(e) =>
-                        setFormEdit({ ...formEdit, email: e.target.value })
-                      }
-                      type="email"
-                      placeholder=""
-                      defaultValue={defaultData.email}
-                      className="border-b-2 text-xl focus:outline-none"
-                    />
-                    <label className="text-xl text-[#9F9F9F] mt-10">
-                      Delivery adress :
-                    </label>
-                    <textarea
-                      onChange={(e) =>
-                        setFormEdit({ ...formEdit, address: e.target.value })
-                      }
-                      placeholder=""
-                      defaultValue={defaultData.address}
-                      className="border-b-2 text-xl"
-                    />
-                  </div>
-                  <div className="flex flex-col mt-10">
-                    <p className="text-[#4F5665] font-bold text-2xl">Details</p>
-                    <label className="text-xl text-[#9F9F9F] mt-10">
-                      Display name :
-                    </label>
-                    <input
-                      placeholder=""
-                      type="text"
-                      defaultValue={defaultData.username}
-                      className="border-b-2 text-xl focus:outline-none"
-                    />
-                    <label className="text-xl text-[#9F9F9F] mt-10">
-                      First name :
-                    </label>
-                    <input
-                      onChange={(e) =>
-                        setFormEdit({ ...formEdit, username: e.target.value })
-                      }
-                      placeholder=""
-                      type="text"
-                      defaultValue={defaultData.username}
-                      className="border-b-2 text-xl focus:outline-none"
-                    />
-                    <label className="text-xl text-[#9F9F9F] mt-10">
-                      Last name :
-                    </label>
-                    <input
-                      placeholder=""
-                      type="text"
-                      defaultValue={defaultData.username}
-                      className="border-b-2 text-xl focus:outline-none"
-                    />
-                  </div>
-                </div>
-                <div className="w-[50%] px-10">
-                  <div className="flex flex-col mt-8">
-                    <label className="text-xl text-[#9F9F9F] mt-10">
-                      Mobile number :
-                    </label>
-                    <input
-                      onChange={(e) =>
-                        setFormEdit({ ...formEdit, phone: e.target.value })
-                      }
-                      type="number"
-                      defaultValue={defaultData.phone}
-                      className="border-b-2 text-xl focus:outline-none"
-                    />
-                  </div>
-                  <div className="flex flex-col mt-60">
-                    <label className="text-xl text-[#9F9F9F]">DD/MM/YY</label>
-                    <input
-                      placeholder=""
-                      className="border-b-2 text-xl"
-                      type="date"
-                      onChange={(e) => console.log(e.target.value)}
-                    />
-                  </div>
-                </div>
+          </div>
+          <div className="flex flex-col lg:flex-row justify-between">
+            <div className="bg-[#fff] w-full lg:w-[70%] rounded-lg shadow-xl p-5 flex flex-col">
+              <div className="mb-5 flex justify-between">
+                <p className="text-[#4F5665] font-bold text-xl">Details</p>
+                {!isEdit.detail && (
+                  <BtnEdit
+                    onClick={() => setIsEdit({ ...isEdit, detail: true })}
+                  />
+                )}
               </div>
-              <form className="flex mt-16 justify-center">
-                <div className="flex items-center">
-                  <input
-                    type="radio"
-                    className="w-4 h-4 accent-[#6A4029] text-[#9F9F9F] "
-                    placeholder=""
-                  />
-                  <label className="text-[#9F9F9F] ml-3">Male</label>
+              <div className="grid lg:grid-cols-2 gap-10 gap-y-3">
+                <Input
+                  label="Display name :"
+                  placeholder="Input your display name"
+                  value={formEdit.username}
+                  disabled={!isEdit.detail}
+                  name="username"
+                  onChange={handleChangeInput}
+                />
+                <Input
+                  label="Birthday"
+                  placeholder="DD/MMMM/YYYY"
+                  type="date"
+                  disabled
+                />
+                <Input
+                  label="First name :"
+                  placeholder="Input your first name"
+                  disabled
+                />
+                <div className="flex flex-col">
+                  {["Male", "Female"].map((item, i) => (
+                    <div key={i} className="flex items-center">
+                      <input
+                        disabled
+                        type="radio"
+                        className="w-4 h-4 accent-[#6A4029] text-[#9F9F9F] outline-2"
+                      />
+                      <label className="text-[#6A4029] ml-3">{item}</label>
+                    </div>
+                  ))}
                 </div>
-                <div className="flex items-center ml-10">
-                  <input
-                    type="radio"
-                    className="w-4 h-4 accent-[#6A4029]"
-                    placeholder=""
-                  />
-                  <label className="text-[#9F9F9F] ml-3">Female</label>
-                </div>
-              </form>
+                <Input
+                  label="Last Name :"
+                  placeholder="Input your last name"
+                  disabled
+                />
+              </div>
+            </div>
+            <div className="flex flex-col gap-3 w-full lg:w-[25%] rounded-lg p-2">
+              <p className="text-lg text-white text-center font-semibold">
+                Do you want to save the change?
+              </p>
+              <BtnSecondary onClick={handleEdit}>Save Change</BtnSecondary>
+              <BtnPrimary onClick={handleCancleEdit}>Cancel</BtnPrimary>
+              <button className="p-2.5 bg-white rounded-lg text-[#6A4029] border-2 border-[#6A4029]">
+                Edit Password
+              </button>
+              <button
+                onClick={onLogout}
+                className="p-2.5 bg-white rounded-lg text-[#6A4029] border-2 border-[#6A4029]"
+              >
+                Logout
+              </button>
             </div>
           </div>
         </div>

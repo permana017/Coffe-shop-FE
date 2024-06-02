@@ -47,7 +47,8 @@ function PaymentSection() {
     qty: dataOrder?.qty,
     img: dataOrder?.img,
   };
-  const handlePostOrder = () => {
+
+  const postOrder = () => {
     setLoading(true);
     axios
       .post(
@@ -74,54 +75,71 @@ function PaymentSection() {
       });
   };
 
+  const handlePostOrder = () => {
+    if (dataOrder) {
+      postOrder();
+    } else {
+      navigate("/products");
+    }
+  };
+
   return (
     <div>
       <main className="payment-page">
         <section className="container mt-[80px]">
-          <section className="w-full flex justify-between">
-            <div className="w-[40%]">
-              <h1 className="text-label text-left my-5 tw-60 text-white text-4xl">
+          <section className="w-full flex flex-col lg:flex-row justify-between py-5 lg:py-10 gap-5 lg:gap-0">
+            <div className="w-full lg:w-[40%]">
+              <h1 className="text-left mb-5 tw-60 text-white text-4xl font-black">
                 Checkout your item now!
               </h1>
               <section className=" bg-white w-full p-5 rounded-2xl">
-                <h2 className="text-2xl font-bold mb-10 text-center">
+                <h2 className="text-2xl font-bold text-center">
                   Order Summary
                 </h2>
-                <div className="flex items-center my-5 justify-between ">
-                  <img
-                    src={`${baseUrlCloudinary}${dataOrder?.img}`}
-                    alt="Hazelnut Latte"
-                    width="82px"
-                    className="rounded-xl mr-10 h-[75px]"
-                  />
-                  <div className="w-[50%]">
-                    <p>{dataOrder?.title}</p>
-                    <p>x {dataOrder?.qty}</p>
-                    <p>{size()}</p>
-                  </div>
-                  <p>IDR {dataOrder?.price}</p>
-                </div>
-                <hr className="h-px mb-3 bg-gray-200 border-0 dark:bg-gray-700" />
-                <div className="flex justify-between tw-100 my-1">
-                  <p>SUBTOTAL</p>
-                  <p>IDR {subtotal}</p>
-                </div>
-                <div className="flex justify-between tw-100 my-1">
-                  <p>TAX & FEES</p>
-                  <p>IDR {tax}</p>
-                </div>
-                <div className="flex justify-between tw-100 my-1">
-                  <p>SHIPPING</p>
-                  <p>IDR 10.000</p>
-                </div>
-                <div className="flex justify-between tw-100 my-4 text-3xl font-bold text-[#362115] mt-10">
-                  <p>TOTAL</p>
-                  <p>IDR {Number(subtotal + tax + 10000)}</p>
-                </div>
+                {dataOrder ? (
+                  <>
+                    <div className="flex items-center my-5 justify-between mt-10">
+                      <img
+                        src={`${baseUrlCloudinary}${dataOrder?.img}`}
+                        alt="Hazelnut Latte"
+                        width="82px"
+                        className="rounded-xl mr-10 h-[75px]"
+                      />
+                      <div className="w-[50%]">
+                        <p>{dataOrder?.title}</p>
+                        <p>x {dataOrder?.qty}</p>
+                        <p>{size()}</p>
+                      </div>
+                      <p>IDR {dataOrder?.price}</p>
+                    </div>
+                    <hr className="h-px mb-3 bg-gray-200 border-0 dark:bg-gray-700" />
+                    <div className="flex justify-between tw-100 my-1">
+                      <p>SUBTOTAL</p>
+                      <p>IDR {subtotal}</p>
+                    </div>
+                    <div className="flex justify-between tw-100 my-1">
+                      <p>TAX & FEES</p>
+                      <p>IDR {tax}</p>
+                    </div>
+                    <div className="flex justify-between tw-100 my-1">
+                      <p>SHIPPING</p>
+                      <p>IDR 10.000</p>
+                    </div>
+                    <div className="flex justify-between tw-100 my-4 text-3xl font-bold text-[#362115] mt-10">
+                      <p>TOTAL</p>
+                      <p>IDR {Number(subtotal + tax + 10000)}</p>
+                    </div>
+                  </>
+                ) : (
+                  <p className="text-center text-lg text-[#6A4029] mt-5">
+                    There is no product you have chosen here, please return to
+                    the product page and select a product!
+                  </p>
+                )}
               </section>
             </div>
-            <div className="w-[40%]">
-              <div className="mt-10">
+            <div className="w-full lg:w-[40%]">
+              <div className="">
                 <h3 className="font-bold text-2xl text-[#FFFFFF] -mt-1">
                   Address details
                 </h3>
@@ -134,10 +152,10 @@ function PaymentSection() {
                   </p>
                   <p className="text-xl my-3">+62 81348287878</p>
                 </div>
-                <h3 className="mt-10 font-bold text-2xl text-[#FFFFFF] my-5">
+                <h3 className="mt-5 font-bold text-2xl text-[#FFFFFF] mb-2">
                   Payment method
                 </h3>
-                <form className="card-payment-method bg-[#FFFFFF] rounded-xl p-5">
+                <div className="card-payment-method bg-[#FFFFFF] rounded-xl p-5">
                   <div className="flex items-center my-5">
                     <input
                       id="default-radio-1"
@@ -198,8 +216,8 @@ function PaymentSection() {
                       Cash on delivery
                     </label>
                   </div>
-                </form>
-                <div className="pt-5 pb-10">
+                </div>
+                <div className="pt-10">
                   {loading ? (
                     <BtnSecondary py="py-4">
                       <div className="flex items-center gap-2 justify-center">

@@ -6,24 +6,7 @@ import axios from "axios";
 import BtnPrimary from "../../component/BtnPrimary";
 import BtnSecondary from "../../component/BtnSecondary";
 import { useLocation, useNavigate } from "react-router-dom";
-
-function InputProduct({ onChange, name, type, label, placeholder, value }) {
-  return (
-    <div className="mb-4 flex flex-col">
-      <label for={name} className="text-lg font-bold text-[#6A4029]">
-        {label}
-      </label>
-      <input
-        value={value}
-        name={name}
-        type={type}
-        onChange={onChange}
-        placeholder={placeholder}
-        className="border-b-2 py-2.5 px-3 outline-none focus:border-b-[#6A4029]"
-      ></input>
-    </div>
-  );
-}
+import Input from "../../component/Input";
 
 function NewProduct() {
   let dataUser = localStorage.getItem("@userLogin");
@@ -164,14 +147,14 @@ function NewProduct() {
               </div>
             </section>
             <section className="flex flex-col w-full md:w-[60%]">
-              <InputProduct
+              <Input
                 onChange={handleChangeInput}
                 label="Name :"
                 placeholder="Type product name min. 50 characters"
                 name="tittle"
                 value={data.tittle}
               />
-              <InputProduct
+              <Input
                 onChange={handleChangeInput}
                 label="Price :"
                 placeholder="Type the price"
@@ -197,7 +180,7 @@ function NewProduct() {
                   <option value="nonCoffe">Non Coffe</option>
                 </select>
               </div>
-              <InputProduct
+              <Input
                 onChange={handleChangeInput}
                 label="Description :"
                 placeholder="Type the price"

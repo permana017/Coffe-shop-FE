@@ -74,6 +74,7 @@ function Login() {
             </p>
             <div className="p-5 md:px-10 xl:px-20 flex flex-col gap-4 w-full">
               <Input
+                outline
                 label="Email :"
                 onChange={(e) =>
                   setLoginForm({ ...loginForm, email: e.target.value })
@@ -84,6 +85,7 @@ function Login() {
                 id="email"
               />
               <Input
+                outline
                 label="Password :"
                 onChange={(e) =>
                   setLoginForm({ ...loginForm, password: e.target.value })

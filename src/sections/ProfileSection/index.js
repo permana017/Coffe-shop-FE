@@ -138,7 +138,7 @@ function ProfileSection() {
 
   return (
     <div>
-      <main className="bg-profile mt-20 py-10">
+      <main className="bg-profile mt-[60px] lg:mt-20 py-10">
         <div className="container flex flex-col gap-5">
           <p className="text-2xl text-white font-bold">User Profile</p>
           <div className="flex flex-col lg:flex-row justify-between lg:mb-10 gap-5">

@@ -41,14 +41,14 @@ function HistoryPage() {
   return (
     <div>
       <main className="history-page min-h-[100vh]">
-        <section className="container mt-[150px]">
+        <section className="container mt-20 lg:mt-28">
           <section className="text-white">
-            <h1 className="text-label text-center mb-3">
+            <h1 className="text-2xl lg:text-5xl font-bold text-center mb-3">
               Let’s see what you have bought!
             </h1>
             <p className="text-center m-0">Select to delete item</p>
           </section>
-          <section className="grid grid-cols-3 gap-5 p-10">
+          <section className="grid md:grid-cols-2 lg:grid-cols-3 gap-3 lg:gap-5 py-5 lg:p-10">
             {data.map((item, i) => (
               <div
                 className="bg-white p-3 flex gap-5 items-center rounded-lg w-full"

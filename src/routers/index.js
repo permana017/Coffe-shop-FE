@@ -9,6 +9,7 @@ import SignUpPage from "src/pages/SignUpPage";
 import ForgotPassPage from "src/pages/ForgotPasswordPage";
 import ProductDetailPage from "src/pages/ProductDetailPage";
 import PaymentPage from "src/pages/PaymentPage";
+import RoomChat from "src/pages/RoomChat";
 import Profile from "src/pages/Profile";
 import {
   BrowserRouter as Router,
@@ -90,6 +91,10 @@ const App = () => {
       path: "/Profile",
       element: <Profile />,
     },
+    {
+      path: "/room-chat",
+      element: <RoomChat />,
+    },
   ];
 
   let userPublic = [
@@ -128,6 +133,10 @@ const App = () => {
     {
       path: "/Profile",
       element: <Profile />,
+    },
+    {
+      path: "/room-chat",
+      element: <RoomChat />,
     },
   ];
 
